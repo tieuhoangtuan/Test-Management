@@ -1,0 +1,203 @@
+body {
+    font-family: 'Barlow',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+    margin: 0 auto;
+}
+
+.content {
+    float: left;
+    width: 80%;
+    height: 750px;
+    background-color: #eaf1f7;
+}
+
+.title {
+    padding: 10px 15px;
+    border: #d2e2ed 1px solid;
+    font-weight: 600;
+    font-size: 19px;
+    line-height: 25px;
+    color: #111;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.add-form{
+    border: 1px solid #aecade;
+}
+
+.form-contain{
+    border: 1px solid #aecade;
+    margin: 15px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+input.form-control {
+    height: 22px;
+    line-height: 22px;
+}
+
+.form-control {
+    display: block;
+    background: white;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #aecade;
+    font-size: inherit;
+    margin: 0;
+    width: 462px;
+}
+
+.sidebar-inner {
+    padding: 15px 15px 15px 5px;
+    border-bottom: 1px solid #aecade;
+}
+
+p {
+    color: #202020;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+    padding: 0;
+    padding-left: 10px;
+    line-height: 140%;
+    margin: 0;
+    font-size: 14px;
+}
+
+.form-group{
+    margin-top: 5px;
+    margin-bottom: 3px;
+}
+
+.form label{
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+.tab button{
+    padding: 14px 0px 5px !important;
+    font-weight: 540;
+    margin: 15px 15px 0px;
+}
+
+.tab {
+    overflow: hidden;
+    border-bottom: 1px solid #ccc;
+}
+
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+.tab button.active {
+    border-bottom: 4px #244358 solid;
+    color: #244358;
+    font-weight: 600;
+}
+
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    background:  #ccc;
+}
+
+input[type=checkbox] {
+    position: relative;
+    cursor: pointer;
+    width: 15px;
+    height: 15px;
+    top: 0;
+    left: 0;
+    background-color: #fffff0;
+    border-radius: 0;
+    border: 1px solid #b6c4f4;
+}
+
+tr{
+    display: flex;
+    border-bottom: 1px solid #d2e2ed;
+    align-items: center;
+    width: 1020px;
+    margin-top: 10px;
+}
+
+td a{
+    display: block;
+    margin-right: 15px;
+}
+
+td:first-child{
+    width: 500px;
+    margin-right: 500px;
+}
+
+th {
+    font-weight: 400;
+    width: 135px;
+    display: block;
+    text-align: left;
+}
+
+.project-name{
+    font-weight: 200;
+    width: 135px;
+}
+
+.icon-small-edit {
+    background: url(https://static.testrail.io/7.8.0.1141/images/theme-modern/icons/smallEdit.svg) center no-repeat;
+    height: 12px;
+    width: 12px;
+}
+
+.icon-small-delete {
+    background: url(https://static.testrail.io/7.8.0.1141/images/theme-modern/icons/smallDelete.svg) center no-repeat;
+    height: 12px;
+    width: 12px;
+}
+
+
+.button-group {
+    height: 28px;
+    margin-top: 10px;
+}
+
+.button {
+    outline: 0;
+    display: block;
+    background-color: #376789!important;
+    border: 1px solid #376789;
+    border-radius: 2px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Barlow',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+    padding: 0 8px 0 30px;
+    cursor: pointer;
+    color: #fff!important;
+    text-decoration: none!important;
+    height: 26px;
+    line-height: 26px;
+    margin: 0;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.button-add {
+    background: url(https://static.testrail.io/7.8.0.1141/images/theme-modern/icons/addWhite.svg) 8px 50% no-repeat;
+}
+
+.button-left {
+    float: left;
+    margin-right: 10px;
+}

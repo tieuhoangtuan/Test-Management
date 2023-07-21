@@ -1,0 +1,240 @@
+body {
+    font-family: 'Barlow',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+    margin: 0 auto;
+}
+
+/*.header{*/
+/*    background: #0e3754 url(#https://static.testrail.io/7.8.0.1141/images/theme-modern/layout/structureBG.svg) center no-repeat;*/
+/*    height: 91px;*/
+/*    display: flex;*/
+/*    justify-content: space-between;*/
+/*}*/
+
+/*.top-text{*/
+/*    font-size: 18px;*/
+/*    margin-top: 5px;*/
+/*    color: #fff;*/
+/*    padding-top: 18px;*/
+/*    font-weight: 600;*/
+/*    padding-bottom: 5px;*/
+/*}*/
+
+/*.header-left{*/
+/*    display: flex;*/
+/*}*/
+/*#top-logo img {*/
+/*    max-width: 200px;*/
+/*    max-height: 45px;*/
+/*}*/
+
+/*#top-logo {*/
+/*    float: left;*/
+/*    height: 45px;*/
+/*    vertical-align: middle;*/
+/*    margin: 10px 10px 0 15px;*/
+/*    border-right: 1px solid #376789;*/
+/*    padding-right: 10px;*/
+/*}*/
+
+/*.top-panel{*/
+/*    display: flex;*/
+/*    justify-content: space-between;*/
+/*    background: #376789;*/
+/*    height: 32px;*/
+/*    border-bottom-left-radius: 2px;*/
+/*    align-items: center;*/
+/*    */
+/*}*/
+/*.icon-header-mail {*/
+/*    background: url(https://static.testrail.io/7.8.0.1141/images/theme-modern/header/mail.svg) center no-repeat;*/
+/*    display: inline-block;*/
+/*    height: 16px;*/
+/*    width: 16px;*/
+/*}*/
+
+/*.icon-header-twitter {*/
+/*    background: url(https://static.testrail.io/7.8.0.1141/images/theme-modern/header/twitter.svg) center no-repeat;*/
+/*    display: inline-block;*/
+/*    height: 16px;*/
+/*    width: 16px;*/
+/*}*/
+
+/*.icon-header-blog {*/
+/*    background: url(https://static.testrail.io/7.8.0.1141/images/theme-modern/header/blog.svg) center no-repeat;*/
+/*    display: inline-block;*/
+/*    height: 16px;*/
+/*    width: 16px;*/
+/*}*/
+
+/*.top-panel ul li{*/
+/*    display: inline;*/
+/*}*/
+
+/*.top-panel ul li a{*/
+/*    text-decoration: none;*/
+/*    background-color: transparent;*/
+/*    cursor: pointer;*/
+/*    color: #e0e3f4;*/
+/*}*/
+
+/*.top-menu-item {*/
+/*    border-right: 1px solid #5993bc;*/
+/*    padding: 0 7px;*/
+/*}*/
+
+
+/*.side-bar{*/
+/*    float: right;*/
+/*    width: 20%;*/
+/*    height: 750px;*/
+/*    background-color: #d2e2ed;*/
+/*}*/
+
+/*.side-bar ul li a{*/
+/*    text-decoration: none;*/
+/*    color: #5993bc;*/
+/*    padding: 8px 15px;*/
+/*    font-weight: 600;*/
+/*    display: block;*/
+/*}*/
+
+/*.side-bar ul{*/
+/*    list-style-type: none;*/
+/*    padding-left: 9px;*/
+/*}*/
+
+.content {
+    float: left;
+    width: 80%;
+    height: 750px;
+    background-color: #eaf1f7;
+}
+
+.title {
+    padding: 10px 15px;
+    font-weight: 600;
+    font-size: 19px;
+    line-height: 25px;
+    color: #111;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.add-form{
+    border: 1px solid #aecade;
+}
+
+.form-contain{
+    border: 1px solid #aecade;
+    margin: 15px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;    
+}
+
+input.form-control {
+    height: 22px;
+    line-height: 22px;
+}
+
+.form-control {
+    display: block;
+    background: white;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #aecade;
+    font-size: inherit;
+    margin: 0;
+    width: 462px;
+}
+
+.form-group{
+    margin-top: 18px;
+    margin-bottom: 3px;
+}
+
+.form label{
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.button-positive {
+    background-color: #049474!important;
+    border: 1px solid #049474;
+    color: #fff!important;
+    height: 30px;
+    line-height: 20px!important;
+}
+
+.button {
+    outline: 0;
+    border-radius: 2px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Barlow',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+    padding: 0 8px 0 30px;
+    cursor: pointer;
+    color: #fff!important;
+    text-decoration: none!important;
+    height: 30px;
+    line-height: 26px;
+    margin: 0;
+    user-select: none;
+    margin: 5px 15px 10px 0;
+
+}
+
+.button-negative{
+    outline: 0;
+    cursor: pointer;
+    color: #e40046;
+    border: 1px solid #e40046;
+    padding: 0 8px 0 30px;
+    border-radius: 2px;
+}
+
+.button-negative {
+    color: #e40046!important;
+    border: 1px solid #e40046;
+    background-color: transparent!important;
+    height: 30px;
+}
+
+.button-cancel {
+    background: #376789 url(https://static.testrail.io/7.8.0.1141/images/theme-modern/icons/cancel.svg) 8px 50% no-repeat;
+}
+
+.button-ok {
+    background: #376789 url(https://static.testrail.io/7.8.0.1141/images/theme-modern/icons/acceptWhite.svg) 8px 50% no-repeat;
+}
+
+span {
+    display: block;
+    margin: 15px 15px 0 15px;
+}
+.message-error {
+    background: #f4e0e0;
+    border: 1px solid #e40046;
+    clear: left;
+    white-space: pre-line;
+    padding: 7px 8px;
+    margin-bottom: 1.25em;
+    line-height: 140%;
+    border-radius: 4px;
+}
+
+.message-success {
+    background: #e7f2e3 ;
+    border: 1px solid #e7f2e3;
+    clear: left;
+    white-space: pre-line;
+    padding: 7px 8px;
+    margin-bottom: 1.25em;
+    line-height: 140%;
+    border-radius: 4px;
+}

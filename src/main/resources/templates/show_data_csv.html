@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/add_test_case.css}"/>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/top-header.css}"/>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/side-bar.css}"/>
+  <script th:src="@{/js/header-project.js}"></script>
+  <title>CSV</title>
+
+</head>
+<body>
+<th:block th:insert="~{header-project.html :: header-project}">
+</th:block>
+<div th:insert="~{side-bar.html :: side-bar}"></div>
+<form
+      th:action="@{/cases/save-csv}"
+      style="margin: 0 20rem 0 .5rem"
+      id="form"
+      th:object="${listCases}"
+      method="post">
+  <input type="hidden" id="project_id" name="project_id" th:value="${project_id}">
+  <div th:each="data, itemStat : *{testCaseDtoList}" style="margin-top: 1rem" id="form-controls">
+    <div class="form-group form-group-main">
+      <label for="title">
+        Title
+        <span class="form-required">*</span>
+      </label>
+      <input  th:field="*{testCaseDtoList[__${itemStat.index}__].title}"
+              class="form-control form-control-full form-fields"
+              type="text"
+              name="title"
+              id="title"
+              maxlength="250"/>
+    </div>
+
+    <div class="io-container io-framed form-group table">
+      <div class="column-p4 column">
+        <label class="io-label" for="section_id">
+          Section
+          <span class="form-required">*</span>
+        </label>
+        <select
+                name="section_id"
+                id="section_id"
+                class="form-control form-control-full form-select searchable chzn-done">
+          <option th:each="list : ${listSection}"
+                  th:value="${list.id}"
+                  th:text="${list.name}"
+                  th:selected="${list.id == currentSection.id}">
+          </option>
+        </select>
+        <div
+                id="section_id_chzn"
+                class="chzn-container chzn-container-single chzn-container-active"
+                style="width: 100%">
+        </div>
+      </div>
+      <div class="column-p4 column">
+        <label class="io-label" for="type_id">
+          Type
+          <span class="form-required">*</span>
+        </label>
+        <select th:field="*{testCaseDtoList[__${itemStat.index}__].type}"
+                name="type_id"
+                id="type_id"
+                class="form-control form-control-full form-select searchable chzn-done">
+          <option th:each="type : ${listType}"
+                  th:value="${type}"
+                  th:text="${type}"
+                  th:selected="${type == data.type}">
+          </option>
+        </select>
+      </div>
+      <div class="column-p4 column">
+        <label class="io-label" for="priority_id">
+          Priority
+          <span class="form-required">*</span>
+        </label>
+        <select th:field="*{testCaseDtoList[__${itemStat.index}__].priority}"
+                name="priority_id"
+                id="priority_id"
+                class="form-control form-control-full form-select searchable chzn-done">
+          <option th:each="priority : ${listPriority}"
+                  th:value="${priority}"
+                  th:text="${priority}"
+                  th:selected="${priority == data.priority}">
+          </option>
+        </select>
+      </div>
+      <div class="column-p4 column">
+        <label class="io-label" for="estimate"> Estimate </label>
+        <input th:field="*{testCaseDtoList[__${itemStat.index}__].estimate}"
+               class="form-control form-control-full form-fields"
+               type="text"
+               name="estimate"
+               id="estimate"
+               maxlength="250"/>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="custom_preconds"> Preconditions </label>
+      <div
+              class="textarea-resizable editor-bindable attachment-list-wrapper"
+              id="custom_preconds_wrapper"
+              data-attribute="custom_preconds">
+                <textarea
+                        th:field="*{testCaseDtoList[__${itemStat.index}__].precondition}"
+                        contenteditable="true"
+                        class="form-control form-control-full field-editor ui-autocomplete-input"
+                        id="custom_preconds"
+                        placeholder=""
+                        role="textbox"
+                        aria-autocomplete="list"
+                        aria-haspopup="true">
+                </textarea>
+      </div>
+      <div class="form-group">
+        <label for="custom_steps"> Steps </label>
+        <div
+                class="textarea-resizable editor-bindable attachment-list-wrapper"
+                id="custom_steps_attachments_wrapper"
+                data-attribute="custom_steps">
+                    <textarea
+                            th:field="*{testCaseDtoList[__${itemStat.index}__].step}"
+                            contenteditable="true"
+                            class="form-control form-control-full field-editor ui-autocomplete-input"
+                            id="custom_steps"
+                            placeholder=""
+                            element-index="1"
+                            autocomplete="off"
+                            role="textbox"
+                            aria-autocomplete="list"
+                            aria-haspopup="true">
+                    </textarea>
+        </div>
+        <div
+                id="custom_steps_display_drop"
+                class="dropzone dz-clickable"
+                rel="custom_steps_display"
+                dialog=""
+                data-project-id="1">
+        </div>
+
+        <div class="form-description form-description-full">
+          The required steps to execute the test case.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="custom_expected">
+          Expected Result
+        </label>
+        <div
+                class="textarea-resizable editor-bindable attachment-list-wrapper"
+                id="custom_expected"
+                data-attribute="custom_expected">
+                    <textarea
+                            th:field="*{testCaseDtoList[__${itemStat.index}__].expectedResult}"
+                            contenteditable="true"
+                            class="form-control form-control-full field-editor ui-autocomplete-input"
+                            id="custom_expected_display"
+                            placeholder=""
+                            element-index="2"
+                            autocomplete="off"
+                            role="textbox"
+                            aria-autocomplete="list"
+                            aria-haspopup="true">
+
+                    </textarea>
+        </div>
+        <div
+                id="custom_expected_display_drop"
+                class="dropzone dz-clickable"
+                rel="custom_expected_display"
+                dialog=""
+                data-project-id="1">
+        </div>
+
+        <div class="form-description form-description-full">
+          The expected result after executing the test case.
+        </div>
+      </div>
+    </div>
+    <div th:if="${itemStat.index != #lists.size(listCases) - 1}" class="separator"></div>
+  </div>
+  <div class="button-group">
+    <button style="padding: 8.5px 8.5px 8.5px 25px;"
+            id="accept"
+            type="submit"
+            class="button button-left button-positive button-ok">
+      Save
+    </button>
+    <a href="index.php?/suites/view/1"
+       class="button button-left button-negative button-cancel leave case-form-cancel"
+       style="display: flex; align-items: center">
+      <span style="margin-top: -2px">Cancel</span>
+    </a>
+    <a
+            class="button button-left button-negative button-cancel leave case-form-cancel"
+            style="display: flex; align-items: center">
+      <span style="margin-top: -2px">Delete</span>
+    </a>
+  </div>
+</form>
+</body>
+</html>

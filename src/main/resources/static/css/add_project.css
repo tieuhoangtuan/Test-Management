@@ -1,0 +1,162 @@
+body {
+    font-family: 'Barlow',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+    margin: 0 auto;
+}
+
+.title {
+    padding: 10px 15px;
+    font-weight: 600;
+    font-size: 19px;
+    line-height: 25px;
+    color: #111;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    border-bottom: 1px solid #aecade;
+}
+.content {
+    float: left;
+    width: 80%;
+    height: 750px;
+    background-color: #eaf1f7;
+}
+.add-form{
+    border: 1px solid #aecade;
+    margin: 15px;
+}
+
+.form-contain{
+    border: 1px solid #aecade;
+    margin: 15px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;    
+}
+
+input.form-control {
+    height: 22px;
+    line-height: 22px;
+}
+
+.form-control {
+    display: block;
+    background: white;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #aecade;
+    font-size: inherit;
+    margin: 0;
+    width: 462px;
+}
+
+.form-group{
+    margin-top: 18px;
+    margin-bottom: 3px;
+}
+
+.form label{
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.button-positive {
+    background-color: #049474!important;
+    border: 1px solid #049474;
+    color: #fff!important;
+    height: 30px;
+    line-height: 20px!important;
+}
+
+.button {
+    outline: 0;
+    border-radius: 2px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Barlow',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+    padding: 0 8px 0 30px;
+    cursor: pointer;
+    color: #fff!important;
+    text-decoration: none!important;
+    height: 30px;
+    line-height: 26px;
+    margin: 0;
+    user-select: none;
+    margin: 5px 15px 10px 0;
+
+}
+
+.button-negative{
+    outline: 0;
+    cursor: pointer;
+    color: #e40046;
+    border: 1px solid #e40046;
+    padding: 0 8px 0 30px;
+    border-radius: 2px;
+}
+
+.button-negative {
+    color: #e40046!important;
+    border: 1px solid #e40046;
+    background-color: transparent!important;
+    height: 30px;
+}
+
+.button-cancel {
+    background: #376789 url(https://static.testrail.io/7.8.0.1141/images/theme-modern/icons/cancel.svg) 8px 50% no-repeat;
+}
+
+.button-ok {
+    background: #376789 url(https://static.testrail.io/7.8.0.1141/images/theme-modern/icons/acceptWhite.svg) 8px 50% no-repeat;
+}
+
+span {
+    display: block;
+    margin: 15px 15px 0 15px;
+}
+.message-error {
+    background: #f4e0e0;
+    border: 1px solid #e40046;
+    clear: left;
+    white-space: pre-line;
+    padding: 7px 8px;
+    margin-bottom: 1.25em;
+    line-height: 140%;
+    border-radius: 4px;
+}
+
+.tab {
+    overflow: hidden;
+  }
+  
+  /* Style the buttons that are used to open the tab content */
+  .tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+  }
+  
+  /* Change background color of buttons on hover */
+  .tab button:hover {
+    background-color: #ddd;
+  }
+  
+  /* Create an active/current tablink class */
+  .tab button.active {
+    background-color: #ccc;
+  }
+  
+  /* Style the tab content */
+  .tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+  }

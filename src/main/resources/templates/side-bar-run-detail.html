@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/side-bar.css}"/>
+    <title>Title</title>
+</head>
+<body>
+  <div class="side-bar" th:fragment="side-bar-run-detail">
+    <div class="side-bar-menu-item">
+      <div class="sidebar-inner">
+        <p>Created by <strong th:text="${run.initiator.getFullName()}"></strong>.</p>
+      </div>
+      <ul>
+        <li>
+          <a th:href="@{/runs/detail/{projectId}/{runId}
+          (projectId=${run.project.id},runId=${run.id})}">
+            Tests & Results
+          </a>
+        </li>
+        <li><a >Activity</a></li>
+        <li><a >Progress</a></li>
+        <li><a href="">Defects</a></li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

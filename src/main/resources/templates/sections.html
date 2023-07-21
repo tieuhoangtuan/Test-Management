@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/sections.css}"/>
+    <script th:src="@{/js/header-project.js}"></script>
+    <title>Test Case Overview</title>
+</head>
+<body>
+    <th:block th:insert="~{header-project.html :: header-project}">
+    </th:block>
+    <div class="side-bar">
+        <div class="sidebar-inner"></div>
+        <div class="sidebar-inner">
+            <a th:href="@{/cases/create/{projectId}(projectId = ${projectId})}" class="button button-left button-add">Add Test Case</a>
+
+            <a href="#" class="button button-left button-add" th:id="rootSection" onclick="displaySubSectionForm(this.id)" th:value="0">Add Section</a>
+        </div>
+    </div>
+    <div class="content" th:fragment="section">
+        <div id="content-header" class="content-header content-header-default">
+            <div class="content-header-inner">
+                <div class="content-header-result"></div>
+                <div class="toolbar content-header-toolbar">
+                    <a class="toolbar-button content-header-button button-responsive button-start toolbar-button-last" rel="keep-get">
+                        <span class="button-text">Run Test</span>
+                    </a>
+                    <a class="toolbar-button toolbar-button-last content-header-button button-responsive button-report dropdownLink" href="#">
+                        <span class="button-text">Reports</span>
+                        <span class="caret button-caret"></span>
+                    </a>
+                    <a class="toolbar-button content-header-button button-responsive button-shared-steps" href="#">
+                        <span class="button-text">Shared Test Steps</span>
+                    </a>
+                </div>
+                <span class="content-header-icon">
+                    <a id="printPopupLink" class="popupLink link-tooltip" rel="print" href="#">
+                        <div class="icon-print"></div>
+                    </a>
+                </span>
+                <span class="content-header-icon">
+                    <a class="dropdownLink link-tooltip" href="#" tooltip-header="Export Cases" tooltip-text="Exports the sections and test cases into different formats (XML, Excel/CSV).">
+                        <div class="icon-export"></div>
+                    </a>
+                </span>
+                <span class="content-header-icon">
+                    <a class="dropdownLink link-tooltip" href="#" tooltip-header="Import Cases" tooltip-text="Imports sections and test cases from a TestRail XML or CSV file.">
+                        <div class="icon-import"></div>
+                    </a>
+                </span>
+
+                <span class="content-header-icon">
+                    <a class="link-tooltip" href="#" tooltip-header="Import Feature" tooltip-text="Import .feature files into TestRail">
+                        <div class="icon-import-feature"></div>
+                    </a>
+                </span>
+                <span class="content-header-icon">
+                    <a class="link-tooltip" href="#"  tooltip-header="Copy or Move Cases" tooltip-text="Copies or moves sections and test cases from another test suite or project.">
+                        <div class="icon-copyblank"></div>
+                    </a>
+                </span>
+                <div class="content-header-title page_title">Test Cases</div>
+            </div>
+        </div>
+        <div style="margin: 10px 15px 0px ;">
+        </div>
+
+        <!--section tree view-->
+        <div class="groupContent">
+            <input type="hidden" th:value="${projectId}" th:id="contentSectionofproject">
+            <div th:each="section : ${sections}" class="group grid-container">
+                <div class="grid-title" ondragover="allowDrop(event)" th:id="${section.id}" ondrop="dropTestCase(event, this.id)">
+                    <input th:id="section-id-+${section.id}" type="hidden">
+                    <span th:id="section-name-+${section.id}" th:text="${section.name}" class="title-content"></span>
+                    <span class="text-secondary section-count">0</span>
+                    <a style="margin-left: 5px" th:id="${section.id}" onclick="editSection(this.id)">
+                        <div class="icon-small-edit icon-small-inline"></div>
+                    </a>
+                    <a th:href="@{/suites/view/{projectId}/delete/{id}(projectId=${projectId}, id=${section.id})}">
+                        <div class="icon-small-delete icon-small-inline" style="margin-left: 5px;"></div>
+                    </a>
+                </div>
+                <div th:id="section-description-+${section.id}" class="description" th:text="${section.description}">this is parent section</div>
+                <div class="section-table">
+                    <table>
+                        <thead>
+                            <tr class="head-section">
+                                <th><div class="icon-dragnoblue"></div></th>
+                                <th  class="checkbox-section"><input type="checkbox"></th>
+                                <th class="id-section">
+                                    <a href=""><span>ID</span></a>
+                                </th>
+                                <th class="title-section"> 
+                                    <a href=""><span>Title</span></a>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody th:unless="${section.getTestCaseList().isEmpty()}">
+                            <tr draggable="true" th:each="testcase : ${section.getTestCaseList()}"
+                                th:id="${testcase.id}"
+                                ondragstart="dragTestCase(event, this.id)">
+                                <td>
+                                    <div class="caseDraggable dragdrop-action"></div>
+                                </td>
+                                <td class="checkbox-section">
+                                    <input type="checkbox">
+                                </td>
+                                <td class="id-section">
+                                    <a href="#" th:text="${testcase.id}"></a>
+                                </td>
+                                <td class="title-section">
+                                    <a href="#" th:text="${testcase.title}"></a>
+                                </td>
+                                <td>
+                                    <a th:href="@{/cases/update/{projectId}/{caseId}(projectId = ${projectId}, caseId =${testcase.id})}">
+                                        <div class="icon-small-edit"></div>
+                                    </a>
+                                </td>
+
+                                <td>
+                                    <a th:href="@{/cases/delete/{projectId}/{caseId}(projectId = ${projectId}, caseId =${testcase.id})}">
+                                        <div class="icon-small-delete"></div>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>    
+                    </table>
+                </div>
+                <div style="margin: 10px 0px 10px; display: none;"
+                     th:id="section+${section.id}">
+                    <form th:action="@{/cases/create/{projectId}(projectId=${projectId})}"
+                          th:object="${testCase}"
+                          method="post"
+                          style="display: flex; align-items: center;">
+                        <input type="hidden" id="section_id" name="section_id" th:value="${section.id}">
+                        <label for="caseTitle" style="margin-right: 5px;">Case Title:</label>
+                        <input th:field="*{title}" id="caseTitle"
+                               type="text"
+                               style="border: 1px solid #aecade;
+                               border-radius: 3px; width: 462px; height: 22px;
+                               margin-right: 5px;">
+
+                        <button type="submit" class="icon-button-accept" name="submit">
+                        </button>
+                        <a class="cancel" style="display: block;" th:id="${section.id}"
+                           onclick="closeCaseForm(this.id)">
+                            <div class="icon-cancel"></div>
+                        </a>
+                    </form>
+                </div>
+                <div class="text-soft grid-actions" th:id="inlineSectionActions+${section.id}">
+                    <a class="link" id="addCase" onclick="displayCaseForm(this.id)" th:id="${section.id}">Add Case</a> |
+                    <a class="link" th:id="addSubSection+${section.id}" onclick="displaySubSectionForm(this.id)" th:value="${section.id}">Add Subsection</a>
+                </div>
+                <th:block th:unless="${section.getSubSectionList().isEmpty()}">
+                    <div th:replace="~{subsection.html :: tree(children=${section.subSectionList},projectid=${projectId},testCase=${testCase})}"></div>
+                </th:block>
+            </div>
+        </div>
+        <!--section tree view-->
+
+
+    </div>
+    <div id="addSubSectionForm" class="form-container" style="display: none;">
+        <div class="head-section-form">
+            <span>Add Section</span>
+        </div>
+        <form class="sectionForm" th:action="@{/suites/view/{projectId}(projectId=${projectId})}" method="post" th:object="${SectionDto}" >
+            <input th:field="*{parentSectionId}" type="hidden" name="parentSectionId">
+            <div class="form-group">
+                <label for="name">Name*</label>
+                <input th:field="*{name}" name="name" id="name" class="form-input" type="text">
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea th:field="*{description}" class="form-input" name="description" id="description" cols="75" rows="15"></textarea>
+            </div>
+
+            <div class="button-container" >
+                <button id="usersSubmit" class="button button-left button-ok button-positive" type="submit">
+                    Add Section
+                </button>
+                <a class="button button-left button-cancel button-negative" onclick="closeSectionForm()">Cancel</a>
+            </div>
+        </form>
+    </div>
+
+    <div id="editSubSectionForm" class="form-container" style="display: none;">
+        <div class="head-section-form">
+            <span>Edit Section</span>
+        </div>
+        <form class="sectionForm" th:action="@{/suites/view/edit/{projectId}(projectId=${projectId})}" method="post" th:object="${SectionDto}" >
+            <input id="editId" th:field="*{id}" type="hidden" name="id">
+            <div class="form-group">
+                <label for="name">Name*</label>
+                <input id="editName" th:field="*{name}" name="name" class="form-input" type="text">
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="editDescription" th:field="*{description}" class="form-input" name="description" cols="75" rows="15"></textarea>
+            </div>
+
+            <div class="button-container">
+                <button class="button button-left button-ok button-positive" type="submit" style="width: 130px">
+                    Save Changes
+                </button>
+                <a class="button button-left button-cancel button-negative" onclick="closeEditSectionForm()">Cancel</a>
+            </div>
+        </form>
+    </div>
+
+    <div id="ui-overlay" class="ui-widget-overlay" style="width: 1366px; height: 657px; z-index: 1015; display: none;"></div>
+    <script th:src="@{/js/sections.js}"></script>
+</body>
+</html>

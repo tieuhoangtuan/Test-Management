@@ -1,0 +1,103 @@
+.form-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 50px 20px 20px;
+    width: 800px;
+    height: 650px;
+    border-radius: 3px;
+    z-index: 1016;
+    border: 1px solid #7dabcb;
+    box-shadow: 0 4px 10px 0 rgba(0,0,0,0.3);
+}
+
+.head-section-form{
+    background-color: #d2e2ed;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+}
+
+.form-select-case{
+    border: 1px solid #7dabcb;
+    width: 800px;
+    height: 600px;
+    display: grid;
+    grid-template-columns: 35% 65%;
+    position: relative;
+}
+
+.form-select-case::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 35%;
+    width: 1px;
+    background-color: #7dabcb;
+    background-image: repeating-linear-gradient(#7dabcb, #7dabcb 2px, transparent 2px, transparent 5px);
+}
+
+/* .form-group{
+    margin-top: 18px;
+    margin-bottom: 3px;
+} */
+
+/* .form-input{
+    display: block;
+    background: white;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #aecade;
+    margin-bottom: 10px;
+} */
+
+.button-container{
+    display: flex;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.column {
+    padding: 10px;
+}
+
+.text {
+    margin-top: 4px;
+    font-size: 16px;
+    font-style: inherit;
+    font-weight: bold;
+}
+
+
+.submit-button {
+    margin-top: 10px;
+    background-color: #4CAF50; /* Green background color */
+    color: white; /* White text color */
+    padding: 10px 20px; /* Adjust padding as needed */
+    border: none; /* Remove border */
+    cursor: pointer; /* Add cursor pointer on hover */
+}
+
+.cancel-button {
+    background-color: #f44336; /* Red background color */
+    color: white; /* White text color */
+    padding: 10px 20px; /* Adjust padding as needed */
+    border: none; /* Remove border */
+    cursor: pointer; /* Add cursor pointer on hover */
+}
+
+#overlay {
+    display: none; /* Initially hide the overlay */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    z-index: 9999; /* Ensure the overlay appears on top of other elements */
+}

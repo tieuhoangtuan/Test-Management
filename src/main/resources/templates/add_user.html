@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/add_user.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/top-header.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/side-bar.css}"/>
+    <title>Add User</title>
+</head>
+<body>
+    <div th:insert="~{top-header.html :: top-header}"></div>
+    <div th:insert="~{side-bar.html :: side-bar}"></div>
+    <div class="content">
+        <div class="title">Add User</div>
+        <div class="add-form">
+            <span id="span-error" class="show-error " th:text="${error}"></span>
+            <span id="span-success" class="show-success " th:text="${success}"></span>
+            <div class="form-contain">
+                <form class="form" th:action="@{/users/add}" th:method="post">
+                    <div class="form-group">
+                        <label style="margin-left: 15px;" for="fullName">Full Name *</label>
+                        <input class="form-control" style="margin-left: 15px;" type="text" id="fullName" name="fullName" required>
+                    </div>
+    
+                    <div class="form-group">
+                        <label style="margin-left: 15px;" for="email">Email Address</label>
+                        <input class="form-control" style="margin-left: 15px;" type="text" id="email" name="email" required>
+                    </div>
+                    
+                    
+                    <div style="margin: 10px 0 10px 15px;" class="button-container">
+                        <button id="usersSubmit" class="button button-left button-ok button-positive" type="submit">
+                            Add User
+                        </button>
+                        <button class="button button-left button-cancel button-negative">
+                            <a style="text-decoration: none; color: #e40046"
+                               th:href="@{/users/overview}">
+                                Cancel
+                            </a>
+                        </button>
+                    </div>
+                </form>
+            </div> 
+        </div> 
+    </div>
+    <script th:src="@{/js/add-user.js}"></script>
+</body>
+</html>

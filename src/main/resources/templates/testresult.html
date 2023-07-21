@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/testresult.css}" />
+    <script th:src="@{/js/header-project.js}"></script>
+    <title>Test result</title>
+</head>
+
+<body>
+    <th:block th:insert="~{header-project.html :: header-project}">
+    </th:block>
+    <div class="side-bar">
+        <div class="sidebar-inner">
+            <a th:id="addResult2-+${testRunUser.id}" onclick="openAddResultForm(this.id)" class="button button-left button-add" style="width: 180px; height: 33px; margin-bottom: 15px">Add Result</a>
+        </div>
+        <div class="sidebar-inner">
+            <a th:id="addResult2-+${testRunUser.id}" onclick="openCommentForm()" class="button button-left button-add" style="width: 180px; height: 33px">Add Comment</a>
+        </div>
+    </div>
+    <div class="content">
+        <div id="content-header" class="content-header content-header-default">
+            <div class="content-header-inner">
+                <div class="content-header-id" th:text="T+${testRunUser.id}"></div>
+                <div class="content-header-title page_title" th:text="${testRunUser.getTestCase().title}">
+
+                    <a href="#changes" class="link-tooltip" tooltip-text="Jump to the results of this test.">
+                        <div class="icon-small-down icon-small-inline"></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="content-breadcrumb">
+            <a tabindex="-1"
+               th:text="${testRunUser.getTestRun().name}"
+               th:href="@{/runs/detail/{projectId}/{runId}(projectId = ${projectId}, runId = ${testRunUser.testRun.id})}">
+            </a>
+            ›
+            <a tabindex="-1"
+               th:href="@{/runs/detail/{projectId}/{runId}(projectId = ${projectId}, runId = ${testRunUser.testRun.id})}"
+               th:text="${testRunUser.getTestCase().getSection().name}">
+            </a>
+        </div>
+        <div class="content-inner content-inner-compact goal-clear">
+            <div class="io-container io-framed">
+                <table class="io">
+                    <tbody>
+                        <tr>
+                            <td style="width: 25%" id="cell_type_id">
+                                <label class="io-label">Type</label>
+                                <div th:if="${testRunUser.getTestCase().type != null}">
+                                    <span th:text="${testRunUser.getTestCase().type}"></span>
+                                </div>
+                                <div th:unless="${testRunUser.getTestCase().type != null}">
+                                    <span th:text="None"></span>
+                                </div>
+
+                            </td>
+                            <td style="width: 25%" id="cell_priority_id">
+                                <label class="io-label">Priority</label>
+                                <div th:if="${testRunUser.getTestCase().type != null}">
+                                    <span th:text="${testRunUser.getTestCase().priority}"></span>
+                                </div>
+                                <div th:unless="${testRunUser.getTestCase().priority != null}">
+                                    <span th:text="None"></span>
+                                </div>
+                            </td>
+                            <td style="width: 25%" id="cell_estimate">
+                                <label class="io-label">Estimate</label>
+                                <div th:if="${testRunUser.getTestCase().estimate != null}">
+                                    <span th:text="${testRunUser.getTestCase().type}"></span>
+                                </div>
+                                <div th:unless="${testRunUser.getTestCase().estimate != null}">
+                                    <span th:text="None"></span>
+                                </div>
+                            </td>
+                            <td style="width: 25%" id="cell_refs">
+                                <label class="io-label">References</label>
+                                None
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 25%" id="cell_custom_automation_type">
+                                <label class="io-label">Automation Type</label>
+                                None
+                            </td>
+                            <td style="width: 25%"></td>
+                            <td style="width: 25%"></td>
+                            <td style="width: 25%"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tabs" style="margin-top: 2em">
+                <div class="tab-header">
+                    <a href="#" id="resultsTab" class="tab1 current" rel="1">Results &amp; Comments</a>
+                    <a href="#" id="historyTab" class="tab2" rel="2">History &amp; Context</a>
+                    <a href="#" id="defectsTab" class="tab3" rel="3">Defects</a>
+                </div>
+                <div class="tab-body">
+                    <div class="tab1" style="margin-bottom: 21px">
+                        <form th:object="${commentDto}" th:action="@{/tests/add_comment/{projectId}/{testRunUserId}(projectId= ${projectId},testRunUserId=${testRunUser.id})}" method="post">
+                            <input th:field="*{assignUserId}" type="hidden">
+                            <textarea th:field="*{comment}" class="form-control field-editor form-control-full " name="" id="" cols="30" rows="10" required></textarea>
+                            <button type="submit">Add Comment</button>
+                        </form>
+                    </div>
+                    <div th:each="resultComment : ${resultComments}" class="change-container" >
+
+                        <div class="change" th:id="testChange-+${resultComment.tableName}+'-'+${resultComment.id}">
+                            <div class="table">
+                                <div class="column change-column change-column-properties change-column-first ">
+                                    <div class="change-meta">
+
+                                        <div th:if="${resultComment.status} =='Passed'">
+                                            <span th:text="${resultComment.status}" class="status passed"></span>
+                                        </div>
+
+                                        <div th:if="${resultComment.status} =='Untested'">
+                                            <span th:text="${resultComment.status}" class="status untested"></span>
+                                        </div>
+
+                                        <div th:if="${resultComment.status} =='Blocked'">
+                                            <span th:text="${resultComment.status}" class="status blocked"></span>
+                                        </div>
+
+                                        <div th:if="${resultComment.status} =='Retest'">
+                                            <span th:text="${resultComment.status}" class="status retest"></span>
+                                        </div>
+
+                                        <div th:if="${resultComment.status} =='Failed'">
+                                            <span th:text="${resultComment.status}" class="status failed"></span>
+                                        </div>
+
+                                        <div th:if="${resultComment.status} =='Comment'">
+                                            <span th:text="${resultComment.status}" class="status comment"></span>
+                                        </div>
+
+                                        <div th:if="${resultComment.status} =='Assigned'">
+                                            <span th:text="${resultComment.status}" class="status comment"></span>
+                                        </div>
+
+                                        <p class="bottom">
+                                            <span th:text="${resultComment.createdDate} + ' ' + ${resultComment.userId.getFullName()}+'.'"></span>
+                                            <span class="text-secondary editChange">
+                                                <a class="link">Edit</a>
+                                            </span>
+                                        </p>
+
+                                        <div class="busy">
+                                            <div class="icon-progress-inline"></div>
+                                        </div>
+                                        <p></p>
+                                        <div th:if="${(resultComment.assignUserId != null and resultComment.tableName != 'comment') or (resultComment.status == 'Assigned' and resultComment.comment != '')}" style="margin-top: 0.5em">
+                                            <div class="change-meta-item">
+                                                <label class="change-meta-label">Assigned To</label>
+                                                <span th:text="${resultComment.assignUserId.getFullName()}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="column change-column change-column-content column-scrollable change-column-first ">
+                                    <div class="content markdown">
+                                        <div th:if="${resultComment.status == 'Assigned' and #strings.isEmpty(resultComment.comment)}">
+                                            <p th:text="'This test was assigned to ' + ${resultComment.assignUserId.getFullName()}+'.'" style="margin: 0px"></p>
+                                        </div>
+                                        <div th:if="${resultComment.status != 'Assigned' and #strings.isEmpty(resultComment.comment)}">
+                                            <p th:text="'This test was marked as \''+ ${resultComment.status} + '\'.'" style="margin: 0px"></p>
+                                        </div>
+                                        <p th:text="${resultComment.comment}"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="button-group form-buttons">
+                        <a th:id="addResult+${testRunUser.id}" onclick="openAddResultForm(this.id)" class="button button-left button-add">
+                            Add Result
+                        </a>
+                        <a id="assignTo" onclick="openCommentForm()" class="button button-left button-assign">
+                            Assign To
+                        </a>
+                    </div>
+                </div>
+
+            </div>   
+        </div>
+        <div class="add-result-form" style="width: 650px; height: 340px; display: none;">
+            <div id="header-form-test-result" class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" style="background: rgb(43, 117, 55); color: rgb(255, 255, 255);">
+                <span class="ui-dialog-title">Add Result</span>
+            </div>
+            <form th:object="${tesResultDto}" th:action="@{/tests/add/{projectId}/{testRunUserId}(projectId = ${projectId},testRunUserId=${testRunUser.id})}" method="post">
+                <div class="add-result-form-container">
+                    <div class=" result-dialog-column-left">
+                        <div class="form-group">
+                            <input type="hidden" name="testRunUserId" th:field="*{testRunUserId}" id="testRunUserId">
+                            <label for="statusForm">Status*</label>
+                            <select th:field="*{status}" id="statusForm" onclick="changColorByStatus(this.value)" name="status" required style="width: 100%;">
+                                <option value="Passed">Passed</option>
+                                <option value="Blocked">Blocked</option>
+                                <option value="Retest">Retest</option>
+                                <option value="Failed">Failed</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="margin-top: 20px;">
+                            <label for="comment">Comment:</label>
+                            <textarea th:field="*{comment}" name="comment" id="comment" cols="30" rows="6" style="width: 100%;"></textarea>
+                        </div>    
+                    </div>
+                    <div class=" result-dialog-column-right">
+                        <div class="form-group">
+                            <label for="">Assign To</label>
+                            <select th:field="*{assignUser}" id="assign" name="assign" required style="width: 100%;">
+                                <option value="0" text=""></option>
+                                <option th:each="projectUser : ${projectUsers}" th:value="${projectUser.user.id}" th:text="${projectUser.user.getFullName()}"></option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="margin-top: 20px;">
+                            <label for="elapsed" style="display: inline-block;">Elapsed</label>
+                            <span>
+                                <a href="#" id="startBtn" onclick="startIncrementing()">Start</a>
+                            </span>
+                            <span>
+                                <a href="#" id="pauseBtn" onclick="pauseIncrementing()" style="display: none;">Pause</a>
+                            </span>
+                            <span>
+                                <a href="#" id="resumeBtn" onclick="resumeIncrementing()" style="display: none;">Resume</a>
+                            </span>
+                            <span>
+                                <a href="#" id="stopBtn" onclick="stopIncrementing()" style="display: none;">Stop</a>
+                            </span>
+                                
+                                
+                            <input th:field="*{elapsedTime}" type="text" id="elapsed" style="display: block; width: 100%;">
+                            <div class="form-description">How long the test took.</div> 
+                        </div>
+                    </div>
+                </div>
+                <div id="addResultButtons" class="button-group dialog-buttons-pane dialog-buttons-highlighted">
+                    <button type="submit" id="addResultSubmit" style="display: block;  width: 130px;" class="button button-left button-positive button-ok button-dark">
+                        <span class="addResult" style="color: white;" onclick="closeAddResultForm()">Add Result</span><span class="editResult" style="color: white; width: 130px; display: none;">Edit Result</span>
+                    </button>		
+                    <a id="addResultClose" class="button button-left button-negative button-cancel button-dark dialog-action-close" style="width: 50px;" onclick="closeAddResultForm()">
+                        Cancel
+                    </a>
+                </div>
+            </form>
+        </div>
+
+        <div id="add-comment-form" class="add-comment-form" style="display: none">
+            <div class="head-comment-form">
+                <span>Add Comment</span>
+            </div>
+            <form class="comment-form" th:object="${commentDto}" th:action="@{/tests/add_comment/{projectId}/{testRunUserId}(projectId = ${projectId},testRunUserId=${testRunUser.id})}" method="post">
+                <div class="form-group">
+                    <label for="">Assign To</label>
+                    <select th:field="*{assignUserId}"  name="assign" style="width: 100%;">
+                        <option value="" text=""></option>
+                        <option th:each="projectUser : ${projectUsers}" th:value="${projectUser.user.id}" th:text="${projectUser.user.getFullName()}"></option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="comment">Comment</label>
+                    <textarea th:field="*{comment}" class="form-input" name="description" id="description" cols="75" rows="15"></textarea>
+                </div>
+
+                <div class="button-container" >
+                    <button id="usersSubmit" class="button button-left button-ok button-positive" type="submit" style="width: 140px !important;">
+                        Add Comment
+                    </button>
+                    <a class="button button-left button-cancel button-negative" onclick="closeCommentForm()" style="width: 50px">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="ui-overlay" class="ui-widget-overlay" style="width: 1366px; height: 657px; z-index: 1015; display: none;">
+    </div>
+</body>
+<script th:src="@{/js/testresult.js}"></script>
+</html>

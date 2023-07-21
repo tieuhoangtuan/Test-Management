@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+<!--  <link rel="stylesheet" type="text/css" th:href="@{/css/side-bar.css}"/>-->
+  <link rel="stylesheet" type="text/css" th:href="@{/css/side_bar.css}">
+  <link rel="stylesheet" type="text/css" href="/static/css/side_bar.css">
+  <title>Title</title>
+</head>
+<body>
+<div id="sidebar" class="column sidebar" style="width: 250px" th:fragment="side_bar">
+  <div class="sidebar-inner">
+    <div class="sidebar-h1 top">Actions</div>
+    <div class="table" style="margin: 1.5em 0 2em 0">
+      <div class="row">
+        <div class="column summary-column summary-column-icon-compact icon-milestone-32 summary-column-first">
+        </div>
+        <div class="column summary-column summary-column-first">
+          <div class="summary-title summary-title-compact">
+            <a id="sidebar-milestones-overview" th:href="@{/milestones/overview/{id}(id=${projectId})}">Milestones</a>
+          </div>
+          <div class="summary-description-compact text-secondary">
+            <a id="sidebar-milestones-add" class="link" th:href="@{/milestones/add/{id}(id=${projectId})}">Add</a> |
+            <a id="sidebar-milestones-viewall" class="link" th:href="@{/milestones/overview/{id}(id=${projectId})}">View All</a>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column summary-column summary-column-icon-compact icon-run-32">
+        </div>
+        <div class="column summary-column">
+          <div class="summary-title summary-title-compact">
+            <a id="sidebar-runs-overview" th:href="@{/runs/overview/{id}(id=${projectId})}">Test Runs</a>
+          </div>
+          <div class="summary-description-compact text-secondary">
+            <a id="sidebar-runs-add" class="link" th:href="@{/runs/add/{id}(id=${projectId})}">Add</a> |
+            <a id="sidebar-runs-viewall" class="link" th:href="@{/runs/overview/{id}(id=${projectId})}">View All</a>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column summary-column summary-column-icon-compact icon-suite-32 summary-column-last">
+        </div>
+        <div class="column summary-column summary-column-last">
+          <div class="summary-title summary-title-compact">
+            <a id="sidebar-cases-overview" th:href="@{/suites/view/{id}(id=${project.id})}">Test Cases</a>
+          </div>
+          <div class="summary-description-compact text-secondary">
+            <a id="sidebar-cases-add" class="link" th:href="@{/cases/create/{id} (id=${project.id})}">Add</a> |
+            <a id="sidebar-suites-viewall" class="link" th:href="@{/suites/view/{id}(id=${project.id})}">View All</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-h1">
+      Todos
+      <span id="todosBusy" style="display: none;">
+                    <div class="icon-progress-inline"></div>
+                </span>
+    </div>
+    <div id="todos" class="hidden" style="display: block;">
+      <p class="top">None.</p>
+    </div>
+  </div>
+  <div class="break-banner"></div>
+  <!--TR Enterprise Banner Display-->
+  <!--TR Enterprise Banner Display ends here-->
+</div>
+</body>
+</html>

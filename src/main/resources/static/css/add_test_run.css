@@ -1,0 +1,372 @@
+.left-tab li .item-selected{
+    color: #eaf1f7!important;
+    border-bottom: 3px solid #eaf1f7;
+}
+
+.overflow-content {
+    overflow: unset;
+}
+
+.content {
+    max-height: 30%;
+    background: #eaf1f7;
+
+}
+
+.column {
+    display: table-cell;
+    vertical-align: top;
+    margin: 0;
+    padding: 0;
+}
+
+div {
+    font: inherit;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+body {
+    color: #202020;
+}
+
+.content-header-default {
+    border-bottom: 1px solid #d2e2ed;
+    height: auto;
+}
+
+.content-header-inner {
+    padding: 10px 15px;
+}
+
+.content-header-result {
+    display: none;
+    width: 22px;
+    height: 22px;
+    float: left;
+    margin-right: 8px;
+    border-radius: 13px;
+    border: 1px solid #aecade;
+}
+
+.content-header-title {
+    margin: 0;
+    padding: 0;
+    font-weight: 600;
+    font-size: 19px;
+    line-height: 25px;
+    color: #111;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.goals-clear {
+    padding-bottom: 125px;
+}
+
+.content-inner {
+    padding: 18px 15px 30px 15px;
+}
+
+#form {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+    clear: left;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group>label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+label {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+    cursor: default;
+}
+
+input.form-control {
+    height: 22px;
+    line-height: 22px;
+}
+
+.form-control {
+    margin: 0;
+    display: block;
+    background: white;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #aecade;
+    font-size: inherit;
+    margin: 0;
+    width: 462px;
+}
+
+input {
+    writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    color: fieldtext;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    text-align: start;
+    appearance: auto;
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    border-image: initial;
+    padding: 0;
+    font-family: 'Barlow',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+}
+
+.form-description {
+    color: #979797;
+    font-size: 13px;
+    margin-top: 4px;
+    line-height: 1.4;
+    width: 450px;
+}
+
+.dropdown-size {
+    width: 462px;
+}
+
+select.form-control-small {
+    width: 312px;
+}
+
+select.form-select {
+    appearance: none;
+    padding: 0 22px 0 5px;
+    height: 24px;
+    line-height: 24px;
+    background: #fff url(https://static.testrail.io/7.8.0.1141/images/theme-modern/icons/dropdownSelect.svg) no-repeat;
+    background-position: center right;
+    background-size: initial;
+    border-radius: 2px;
+}
+
+select {
+    writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    color: fieldtext;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    text-align: start;
+    box-sizing: border-box;
+    white-space: pre;
+    -webkit-rtl-ordering: logical;
+    cursor: default;
+    border-image: initial;
+    font-family: 'Barlow',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+}
+
+select:not(:-internal-list-box) {
+    overflow: visible !important;
+}
+
+option {
+    font-weight: normal;
+    display: block;
+    white-space: nowrap;
+    min-height: 1.2em;
+    padding: 0px 2px 1px;
+}
+
+optgroup[label] {
+    color: #979797;
+}
+
+optgroup {
+    font-family: 'Barlow',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+    font-weight: normal;
+    display: block;
+
+}
+
+optgroup>option {
+    color: #202020;
+}
+
+.chzn-container {
+    font-size: 14px;
+    position: relative;
+    display: inline-block;
+    zoom: 1;
+}
+
+.chzn-container-active .chzn-single {
+    box-shadow: 0 0 5px rgba(0,0,0,.3);
+    border: 1px solid #5897fb;
+}
+/* this */
+.chzn-container-single .chzn-single {
+    border-radius: 5px;
+    border: 1px solid #aaa;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    height: 23px;
+    line-height: 24px;
+    padding: 0 0 0 8px;
+    color: #444;
+    text-decoration: none;
+}
+
+a, a:link {
+    cursor: pointer;
+    color: #5993bc;
+    text-decoration: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+a {
+    outline: 0;
+    margin: 0;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* this */
+.form-separator {
+    margin: 20px 0;
+    height: 1px;
+    width: 462px;
+    border-bottom: 1px solid #aecade;
+}
+
+.attachment-list-wrapper {
+    border-radius: 2px;
+    margin-bottom: 15px;
+}
+
+div.field-editor.form-control {
+    background: #fff;
+    padding: 5px;
+    color: #202020;
+    font-size: 12px;
+}
+
+.textarea-resizable .field-editor, .field-editor {
+    white-space: pre-wrap!important;
+}
+
+.textarea-resizable .field-editor {
+    height: 100px;
+}
+
+.field-editor {
+    overflow: auto;
+    resize: vertical;
+    font-family: Consolas,Menlo,"Liberation Mono","DejaVu Sans Mono","Bitstream Vera Sans Mono",Courier New,monospace;
+    min-height: 100px;
+}
+
+.form-control-full {
+    width: calc(100% - 12px)!important;
+}
+
+[contenteditable="true"]:empty:not(:focus):before {
+    content: attr(placeholder);
+    color: grey;
+}
+
+strong {
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+.radio>label {
+    cursor: pointer;
+}
+
+.radio>label>input {
+    position: absolute;
+    height: 18px;
+    width: 13px;
+    top: 0;
+    left: 0;
+    padding: 0;
+}
+
+input {
+    font-family: 'Barlow',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+    margin: 0;
+    writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    color: fieldtext;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+}
+
+.radio>label>p {
+    margin-bottom: 0;
+    margin-top: 4px;
+}
+
+p {
+    padding: 0;
+    line-height: 140%;
+    margin: 0;
+    border: 0;
+    font: inherit;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+div.radio {
+    padding-bottom: 12px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.form-message {
+    background: #fff;
+    border: 1px solid #aecade;
+    border-radius: 2px;
+    padding: 6px 7px;
+    line-height: 140%;
+}
+
+span {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+

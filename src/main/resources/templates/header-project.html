@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="total" th:fragment="header-project">
+        <div class="header">
+            <div class="header-left">
+                <div id="top-logo">
+                    <a th:href="@{/}">
+                        <img src="https://static.testrail.io/7.8.0.1141/images/layout/testrail-logo.svg" alt="#">
+                    </a>
+                </div>
+                <div class="top-text">TestRail QA</div>
+            </div>
+
+            <div class="top-panel">
+                <div class="search">
+                    <input type="text">
+                </div>
+                <ul class="top menu">
+                    <li class="top-menu-item"><a>Working on</a></li>
+                    <li class="top-menu-item"><a>Admin</a></li>
+                    <li class="top-menu-item"><a>Help & Feedback</a></li>
+                    <li class="top-menu-item">
+                        <a th:href="@{/logout}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                        <form style="display: none" id="logout-form" th:action="@{/logout}" method="post">
+                            <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
+                        </form>
+                    </li>
+                </ul>
+                <div class="social-media" style="padding: 4px 7px 0px">
+                    <a href="">
+                        <div class="icon-header-mail"></div>
+                    </a>
+                    <a href="">
+                        <div class="icon-header-twitter"></div>
+                    </a>
+                    <a href="">
+                        <div class="icon-header-blog"></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="tab">
+            <ul class="left-tab">
+                <li><a class="tab-link " id="overview" th:href="@{/project/overview/{id}(id=${projectId})}">OVERVIEW</a></li>
+                <li><a>TODO</a></li>
+                <li><a class="tab-link " id="milestone" th:href="@{/milestones/overview/{id}(id=${projectId})}">MILESTONES</a></li>
+                <li><a class="tab-link " id="run" th:href="@{/runs/overview/{id}(id=${projectId})}">TEST RUNS & RESULT</a></li>
+                <li><a class="tab-link " id="cases" th:href="@{/suites/view/{id}(id=${projectId})}">TEST CASES</a></li>
+                <li><a>REPORTS</a></li>
+            </ul>
+            <a class="right-tab" href=""><span>ADMINISTRATION</span></a>
+        </div>
+    </div>
+</body>
+</html>

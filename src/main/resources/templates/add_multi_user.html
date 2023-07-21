@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/add_multi_user.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/top-header.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/side-bar.css}"/>
+    <title>Add Multiple User</title>
+</head>
+<body>
+    <div th:insert="~{top-header.html :: top-header}"></div>
+    <div th:insert="~{side-bar.html :: side-bar}"></div>
+    <div class="content">
+        <div class="title">Add Multiple Users</div>
+        <div class="add-form">
+            <div class="empty" style="margin: 15px">
+                <div class="empty-content empty-info" style="width: 600px">
+                    <div class="empty-title">Steps to add multiple users</div>
+                    <div class="empty-body">
+                        <ol class="empty-ol">
+                            <li class="empty-ol-item"><p>Enter each user on a separate line in the text box below using the following format:</p>
+            
+                                <div style="margin: 1em; color: #505050">
+                                    <p class="top" style="font-style: italic">
+                                        Alice Doe, alice@example.com<br>
+                                        Bob Doe, bob@example.com<br>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="empty-ol-item">Optionally configure additional fields for the users such as the role and groups</li>
+                            <li class="empty-ol-item">Use the Add button at the bottom of the page to add the users</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <form style="margin-left: 15px;" th:action="@{/users/add_many}" th:method="post">
+                <span id="span-message" class="show " th:text="${message}"></span>
+                <label class="label-textarea" for="rawListUser">Users*</label>
+                <textarea name="rawListUser" id="rawListUser" cols="50" rows="20"></textarea>
+                <div class="button-container">
+                    <button id="usersSubmit" class="button button-left button-ok button-positive" type="submit">
+                        Add Multiple Users	
+                    </button>
+                    <button class="button button-left button-cancel button-negative"><a style="text-decoration: none; color: #e40046" th:href="@{/users/overview}">Cancel</a></button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script th:src="@{/js/add-multi-user.js}"></script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/user_role.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/top-header.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/side-bar.css}"/>
+    <script th:src="@{/js/edit-project.js}"></script>
+    <title>Users & Roles</title>
+</head>
+<body>
+    <div th:insert="~{top-header.html :: top-header}"></div>
+    <div th:insert="~{side-bar.html :: side-bar}"></div>
+    <div class="content">
+        <div class="title">Users & Roles</div>
+        <div style="margin-left: 15px; margin-right: 15px;">
+            <div class="tab-active">
+                <button class="tablinks active" onclick="openCity(event, 'user')">USERS</button>
+                <button class="tablinks" onclick="openCity(event, 'role')">ROLES</button>
+            </div>
+            <div id="user" class="tabcontent" style="display: block; background-color: #f5f9fd;">
+                <table >
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" name="col1" onclick="selectAll(this)"></th>
+                            <th>User</th>
+                            <th>Email Address</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="user: ${users}">
+                            <td><input type="checkbox" name="col1" onclick="selectAll(this)"></td>
+                            <td th:text="${user.getFullName()}"></td>
+                            <td th:text="${user.getEmail()}"></td>
+                            <td style="display: block;">
+                                <a href="index.php?/admin/users/edit/7">
+                                    <div class="icon-small-edit"></div>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="button-group grid-buttons">
+                    <a th:href="@{/users/add}" class="button button-left button-add">Add User</a>
+                    <a th:href="@{/users/add_many}" class="button button-left button-add btn-left">Add Multiple Users</a>
+                </div>
+            </div>
+
+            <div id="role" class="tabcontent" style="background-color: #f5f9fd;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="margin-bottom: 5px;">Role</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="role-section" th:each="role: ${roles}">
+                            <td th:text="${role.getRole()}"></td>
+                            <td style="display: block;">
+                                <a href="index.php?/admin/users/edit/7">
+                                    <div class="icon-small-edit"></div>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="button-group grid-buttons">
+                    <a href="#" class="button button-left button-add">Add Role</a>
+                </div>
+            </div>
+        </div> 
+    </div>   
+</body>
+</html>

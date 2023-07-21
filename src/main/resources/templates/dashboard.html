@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/top-header.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/side-bar.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/dashboard.css}"/>
+    <title>Dashboard</title>
+
+</head>
+<body>
+<div th:insert="~{top-header.html :: top-header}"></div>
+<div th:insert="~{side-bar.html :: side-bar}"></div>
+<div class="content">
+    <div class="title">All Projects</div>
+    <div style="border: none" class="add-form">
+            <div style="width: 100%" class="form-group">
+                <div th:each="listProject : ${projectList}" class="row project flex-projects-row" id="project-1">
+                    <div class="column summary-column summary-column-icon flex-projects-1 icon-project-64 ">
+                    </div>
+                    <div class="column summary-column flex-projects-2">
+                        <div class="summary-title text-ppp" style="position: relative; padding: 1px 0 1px 0">
+                            <a th:href="@{/project/overview/{id} (id=${listProject.id})}" style="text-decoration: none" th:text="${listProject.name}"></a>
+                            <span class="hidden fav-busy"><div class="icon-progress-inline"></div></span>
+                        </div>
+                        <div class="summary-links text-secondary">
+                            <a class="link">Todos</a> |
+                            <a class="link" th:href="@{/milestones/overview/{id}(id=${listProject.id})}">Milestones</a> |
+                            <a class="link" th:href="@{/runs/overview/{id}(id=${listProject.id})}">Test Runs</a> |
+                            <a class="link" th:href="@{/suites/view/{id}(id=${listProject.id})}">Test Cases</a> |
+                            <a class="link">Reports</a>
+                        </div>
+                        <div class="summary-description">
+                            Contains <strong th:text="${listProject.getTestRuns().size()}+' '"></strong> active test runs and
+                            <strong th:text="${listProject.getMilestones().size()}+' '"></strong> milestones.									</div>
+                        <div class="hidden details summary-expand">
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <link rel="stylesheet" type="text/css" th:href="@{/css/dashboard.css}"/>-->
+<!--    <link rel="stylesheet" type="text/css" th:href="@{/css/top-header.css}"/>-->
+<!--    <link rel="stylesheet" type="text/css" th:href="@{/css/side-bar.css}"/>-->
+<!--    <title>Dashboard</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <div th:insert="~{top-header.html :: top-header}"></div>-->
+<!--    <div th:insert="~{side-bar.html :: side-bar}"></div>-->
+<!--    <div class="content">-->
+<!--        <div class="title">Data Management</div>-->
+<!--        <div style="margin-left: 15px; margin-right: 15px;">-->
+<!--            <div class="tab">-->
+<!--                <button class="tablinks active" onclick="openCity(event, 'storage')">STORAGE</button>-->
+<!--                <button class="tablinks" onclick="openCity(event, 'export')">EXPORTS</button>-->
+<!--                <button class="tablinks" onclick="openCity(event, 'attachment')">ATTACHMENTS</button>-->
+<!--            </div>-->
+<!--            <div id="storage" class="tab-body tab-frame" style="display: block; background-color: #f5f9fd;">-->
+<!--                <div class="tab tab1 " style="display: block;">-->
+<!--                    <div class="empty welcome-box">-->
+<!--                        <div class="empty-content empty-info">-->
+<!--                            <div class="empty-title">Welcome to the Data Management area!</div>-->
+<!--                            <div class="empty-body">-->
+<!--                                Find here details about your Storage status and account limits. Export your Data Base and manage everything related.                    </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <h1>Your Storage</h1>-->
+<!--                    <div class="col-container storage-box">-->
+<!--                        <div class="col padding-right-30">-->
+<!--                            <div class="storage-box-title">Your Storage status</div>-->
+<!--        -->
+<!--                            <div class="padding-right-30">-->
+<!--                                <div class="col-container storage-size">-->
+<!--                                    <div class="col col-left progress-bar-title-ok">0 GB<small>USED</small>-->
+<!--                                    </div>-->
+<!--                                    <div class="col ta-right progress-bar-title-allowed">50 GB <small class="link-tooltip" tooltip-width="auto" tooltip-class="tooltip-data-management" tooltip-text="50 GB included ">ALLOWED</small></div>-->
+<!--                                </div>-->
+<!--        -->
+<!--                                <div class="progress-bar">-->
+<!--                                    <div class="progress-bar-inner progress-bar-ok" style="width:5%">-->
+<!--                                        <img class="progress-bar-item" src="https://static.testrail.io/7.8.0.1141/images/svg-icons/storage-ok-icon.svg">-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--        -->
+<!--                                <div class="storage-used-data-info">-->
+<!--                                    <div>Database size:<b class="progress-bar-title-ok"> 0 GB</b>-->
+<!--                                    </div>-->
+<!--                                    <br>-->
+<!--                                    <div>Attachments size:<b class="progress-bar-title-ok">0 GB</b>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--        -->
+<!--                        <div class="col">-->
+<!--                            <div class="column-pad-right">-->
+<!--                                <div class="storage-box-title">What you need to know</div>-->
+<!--                                <ul class="bullet-point-list">                           -->
+<!--                                    <li>Your <b>Professional Cloud</b> account has a standard limit of <b>50 GB</b>.</li>-->
+<!--                                    <li>This includes your Database and Attachments.</li>-->
+<!--                                    <li>If you reach the limit you’ll be automatically upgraded with billable<b>25 GB increments</b>, up toa maximum limit of <b>200 GB</b>.                                -->
+<!--                                        <a href="https://www.ideracorp.com/Legal/Gurock/DataStoragePolicy" target="_blank">-->
+<!--                                            Read our Data Storage policy-->
+<!--                                        </a>-->
+<!--                                    </li>-->
+<!--                                    <li>Need more space? Go Server or <b>get 500 GB with Cloud Enterprise</b>.                                 -->
+<!--                                        <a href="https://www.gurock.com/testrail/pricing/server-enterprise" target="_blank">-->
+<!--                                            Learn about Enterprise                               -->
+<!--                                        </a>-->
+<!--                                    </li>-->
+<!--                                    <li>Still have questions?                                 -->
+<!--                                        <a href="https://secure.gurock.com/customers/support" target="_blank">Contact us</a>-->
+<!--                                    </li>-->
+<!--                                </ul>-->
+<!--                                <div class="button-group form-buttons" >-->
+<!--                                    <a style="margin-right: 15px;" href="https://www.ideracorp.com/Legal/Gurock/DataStoragePolicy" class="button button-left" target="_blank">-->
+<!--                                        Read our Data Storage policy                            -->
+<!--                                    </a>-->
+<!--                                    <a href="index.php?/enterprise" class="button button-left button-next">-->
+<!--                                        Get 500 GB with Enterprise                            -->
+<!--                                    </a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div> -->
+<!--    </div>-->
+<!--</body>-->
+<!--</html>-->

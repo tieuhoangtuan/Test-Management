@@ -1,0 +1,112 @@
+body {
+    font-family: 'Barlow',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+    margin: 0 auto;
+    background: #eaf1f7;
+}
+.total{
+    background: #0e3754 url(https://static.testrail.io/7.8.0.1141/images/theme-modern/layout/structureBG.svg) left center no-repeat;
+}
+.header{
+
+    /* height: 91px; */
+    height: 55px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.top-text{
+    font-size: 18px;
+    margin-top: 5px;
+    color: #fff;
+    padding-top: 18px;
+    font-weight: 600;
+    padding-bottom: 5px;
+}
+
+.header-left{
+    display: flex;
+}
+#top-logo img {
+    max-width: 200px;
+    max-height: 45px;
+}
+
+#top-logo {
+    float: left;
+    height: 45px;
+    vertical-align: middle;
+    margin: 10px 10px 0 15px;
+    border-right: 1px solid #376789;
+    padding-right: 10px;
+}
+
+.top-panel{
+    display: flex;
+    justify-content: space-between;
+    background: #376789;
+    height: 32px;
+    border-bottom-left-radius: 2px;
+    align-items: center;
+
+}
+.icon-header-mail {
+    background: url(https://static.testrail.io/7.8.0.1141/images/theme-modern/header/mail.svg) center no-repeat;
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+}
+
+.icon-header-twitter {
+    background: url(https://static.testrail.io/7.8.0.1141/images/theme-modern/header/twitter.svg) center no-repeat;
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+}
+
+.icon-header-blog {
+    background: url(https://static.testrail.io/7.8.0.1141/images/theme-modern/header/blog.svg) center no-repeat;
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+}
+
+.top-panel ul li{
+    display: inline;
+}
+
+.top-panel ul li a{
+    text-decoration: none;
+    background-color: transparent;
+    cursor: pointer;
+    color: #e0e3f4;
+}
+
+.top-menu-item {
+    border-right: 1px solid #5993bc;
+    padding: 0 7px;
+}
+
+.tab {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    height: 36px;
+    align-items: center;
+}
+
+.left-tab{
+    display: flex;
+    list-style-type: none;
+    padding-left: 8px;
+}
+
+.left-tab li a, .right-tab span{
+    font-size: 14px;
+    font-weight: normal;
+    display: block;
+    padding: 0 12px;
+    text-decoration: none;
+    color: #aecade !important;
+    line-height: 28px;
+    height: 28px;
+}

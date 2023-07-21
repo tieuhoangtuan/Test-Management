@@ -1,0 +1,450 @@
+.content {
+    float: left;
+    width: 80%;
+    height: 750px;
+    background-color: #eaf1f7;
+}
+
+.title {
+    padding: 10px 15px;
+    font-weight: 600;
+    font-size: 19px;
+    line-height: 25px;
+    color: #111;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.tab button{
+    padding: 14px 0px 5px !important;
+    font-weight: 540;
+    margin: 15px 15px 0px;
+}
+
+.tab {
+    overflow: hidden;
+    border-bottom: 1px solid #ccc;
+}
+
+  /* Style the buttons that are used to open the tab content */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+
+.tab button.active {
+    border-bottom: 4px #244358 solid;
+    color: #244358;
+    font-weight: 600;
+}
+
+
+.tab-frame {
+    border: 1px solid #aecade;
+    border-radius: 0 0 4px 4px;
+    border-top: 0;
+    padding: 15px;
+}
+
+.welcome-box {
+    margin-bottom: 2em;
+    font-family: Barlow;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    color: #244358;
+}
+
+.empty {
+    background-color: #f6fbff;
+    border: 1px solid #5993bc;
+    border-radius: 4px;
+    clear: both;
+    overflow: auto;
+    padding: 1em 1em 1em 1em;
+}
+
+.empty-info {
+    background: transparent url("https://static.testrail.io/7.8.0.1141/images/theme-modern/icons/info32.svg") top left no-repeat;
+}
+
+.empty-content {
+    max-width: 650px;
+}
+
+.empty-title {
+    color: #244358;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 3px;
+    margin-left: 45px;
+}
+
+.welcome-box .empty-body {
+    margin-top: 8px;
+    font-size: 14px;
+    max-width: 589px;
+}
+
+.empty-body {
+    font-size: 14px;
+    color: #244358;
+    margin-left: 45px;
+}
+
+h1 {
+    font-size: 17px;
+    height: 26px;
+    line-height: 26px;
+    padding: 0;
+    margin-top: 1.2em;
+    margin-bottom: 1em;
+    font-weight: 600;
+}
+
+.storage-box {
+    border-radius: 4px;
+    background-color: #fff;
+    margin-bottom: 2em;
+}
+
+.col-container {
+    display: flex;
+    width: 100%;
+}
+
+.padding-right-30 {
+    padding-right: 30px!important;
+}
+
+
+.storage-box-title {
+    font-family: Barlow;
+    font-size: 15px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #5993bc;
+}
+
+.padding-right-30 {
+    padding-right: 30px!important;
+}
+
+.storage-size {
+    font-size: 18px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #049474;
+}
+
+.col-container {
+    display: flex;
+    width: 100%;
+}
+
+.storage-size .col {
+    padding: 20px 0 5px;
+}
+
+.progress-bar-title-ok {
+    color: #049474;
+}
+
+.col-left {
+    padding: 16px 0 30px;
+}
+
+.col {
+    flex: 1;
+    padding: 16px;
+}
+
+.storage-size small {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.progress-bar-title-allowed {
+    color: #afafaf;
+}
+
+.ta-right {
+    text-align: right;
+}
+
+
+.progress-bar-title-allowed small {
+    text-decoration: underline;
+    text-decoration-style: dashed;
+    cursor: default;
+    font-size: 13px;
+}
+
+.storage-size small {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.progress-bar {
+    color: #000;
+    height: 23px;
+    border-radius: 20px;
+    border: solid 2px #fff;
+    background-color: #eaf1f7;
+    margin: 5px 0 20px;
+}
+
+.progress-bar-inner {
+    height: 105%;
+    box-sizing: border-box;
+    text-align: right;
+    border-radius: 20px;
+    color: #fff;
+    border: solid 2px #fff;
+    border-left: none;
+    min-width: 30px;
+}
+
+.progress-bar-ok {
+    background-color: #049474;
+}
+
+.progress-bar .progress-bar-item {
+    padding: 5px 8px;
+}
+
+img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+
+.storage-used-data-info b {
+    font-weight: 600;
+}
+
+.storage-box b {
+    font-weight: 600;
+}
+
+.progress-bar-title-ok {
+    color: #049474;
+}
+
+.column-pad-right {
+    padding-right: 8px;
+}
+
+.storage-box-title {
+    font-family: Barlow;
+    font-size: 15px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #5993bc;
+}
+
+.bullet-point-list {
+    list-style-position: outside;
+    padding: 6px 16px 0;
+    font-family: Barlow;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.43;
+    letter-spacing: normal;
+    font-size: 14px;
+    color: #111;
+    list-style-type: disc;
+}
+
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+
+.bullet-point-list li {
+    padding: 4px 0;
+}
+
+.storage-box b {
+    font-weight: 600;
+}
+
+.button-group {
+    height: 28px;
+    margin-top: 10px;
+}
+
+.form-buttons {
+    margin-top: 20px;
+}
+
+.button-group {
+    height: 28px;
+}
+
+.storage-box .form-buttons .button {
+    padding-left: 10px;
+}
+
+a, a:link, a:active, a:visited, a:hover {
+    color: #5993bc;
+    text-decoration: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.button-left {
+    float: left;
+    margin-right: 10px;
+}
+
+.button {
+    outline: 0;
+    display: block;
+    background-color: #376789!important;
+    border: 1px solid #376789;
+    border-radius: 2px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Barlow',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+    padding: 0 8px 0 30px;
+    cursor: pointer;
+    color: #fff!important;
+    text-decoration: none!important;
+    height: 26px;
+    line-height: 26px;
+    margin: 0;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.storage-box .form-buttons .button-next {
+    padding-left: 30px;
+    background-color: #fcc200!important;
+    border: solid 1px #fcc200;
+}
+
+.button-next {
+    padding: 0 10px 0 30px;
+}
+
+.flex-projects-row {
+    padding: 8px 0 4px;
+}
+
+.flex-projects-row {
+    display: flex;
+}
+
+.row {
+    background: #fff;
+    margin-bottom: 8px;
+    border-radius: 4px;
+}
+
+div {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+.summary-auto>.row:last-child>.summary-column {
+    padding-bottom: 0;
+}
+
+.summary-auto>.row:first-child>.summary-column {
+    border-top: 0;
+    padding-top: 0;
+}
+
+.flex-projects-1 {
+    order: 0;
+}
+
+.icon-project-64 {
+    background: url(https://static.testrail.io/7.8.0.1141/images/theme-modern/app/project64.svg) center top no-repeat;
+}
+
+.summary-column-icon {
+    width: 80px;
+}
+
+.column {
+    display: table-cell;
+    vertical-align: top;
+    margin: 0;
+    padding: 0;
+}
+
+.flex-projects-2 {
+    order: 1;
+    flex-grow: 1;
+    max-width: calc(100% - 120px);
+}
+
+.column {
+    display: table-cell;
+    vertical-align: top;
+    margin: 0;
+    padding: 0;
+}
+
+element.style {
+    position: relative;
+    padding: 1px 0 1px 0;
+}
+
+.summary-title {
+    font-size: 15px;
+}
+
+.text-ppp {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.summary-links {
+    margin: 5px 0 0 0;
+}
+
+.text-secondary {
+    color: #707070;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.summary-description {
+    margin: 8px 0 4px 0;
+    color: #444;
+    line-height: 1.4;
+}
+

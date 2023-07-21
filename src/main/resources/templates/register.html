@@ -1,0 +1,64 @@
+  <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--  <link rel="stylesheet" href="/static/css/login.css">-->
+  <link rel="stylesheet" th:href="@{/css/login.css}">
+  <title>Register - TestRail</title>
+</head>
+<body>
+<div id="form" class="loginpage-form">
+  <div class="logo loginpage-logo">
+    <a href="http://www.gurock.com/testrail/" target="_blank" class="logo-loginpage"></a>
+  </div>
+  <div id="form-inner">
+    <h1 class="loginpage-installationname">TestRail QA</h1>
+    <div id="content">
+      <h1 class="loginpage-login-text">Log into Your Account</h1>
+      <br>
+      <p th:if="${registerSuccess}" class="alert alert-success" role="alert">Register Success! Please check your Email to active account !</p>
+      <p th:if="${registerError}" class="alert alert-danger" role="alert">The email has already registered
+      <br>
+        <a th:href="@{/forgot_password}" style="margin-bottom:10px; font-size: 1rem">Forgot your password?</a>
+      </p>
+      <form th:action="@{/register}" method="post" th:object="${user}">
+        <div class="form-group" style="padding-bottom:10px">
+          <div class="login-inputx">
+            <input th:field="*{username}" id="name" class="login-input input-noempty" type="text" name="name">
+            <label for="name" class="login-label">User Name</label>
+          </div>
+        </div>
+        <div class="form-group" style="padding-bottom:10px; margin-top: -9px;">
+          <div class="login-inputx">
+            <input th:field="*{email}" id="email" class="login-input input-noempty" type="email" name="email">
+            <label for="email" class="login-label">Email</label>
+          </div>
+        </div>
+        <div class="form-group" style="padding-bottom:10px; margin-top: -9px;">
+          <div class="login-inputx">
+            <input th:field="*{password}" id="password" class="login-input input-noempty" type="password" name="password">
+            <label for="password" class="login-label">Password</label>
+          </div>
+        </div>
+
+        <div class="display-flex" style=" margin-bottom:10px;">
+          <div style="float:left;">
+          </div>
+          <a th:href="@{/login/}" class="loginpage-forgotpassword" style="margin-bottom:10px; font-size: 1rem">Already have an account? Login</a>
+        </div>
+        <div class="display-flex" style=" margin-bottom:40px;">
+          <div style="float:left;">
+          </div>
+          <a th:href="@{/forgot_password}" class="loginpage-forgotpassword" style="margin-bottom:10px; font-size: 1rem">Forgot your password?</a>
+        </div>
+        <button type="submit" id="button_primary" class="loginpage-button-sso-disable loginpage-button-sso-disable-hover  loginpage-button-sso-disable-active">
+          <span class="single-sign-on">Register</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

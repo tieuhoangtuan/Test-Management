@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/milestone_detail.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/high_chart.css}">
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script th:src="@{/js/header-project.js}"></script>
+    <title>Milestone Detail</title>
+</head>
+<body>
+
+    <th:block th:insert="~{header-project.html :: header-project}">
+    </th:block>
+    <div class="side-bar">
+        <div class="sidebar-inner">
+            <a class="button button-left button-add"
+               th:href="@{/milestones/add/{projectId}(projectId = ${projectId}, parent_id = ${milestone.id} )}">
+                Add Milestone
+            </a>
+        </div>
+    </div>
+    <div class="content" style="min-height: 100vh">
+        <div id="content-header" class="content-header content-header-default">
+            <div class="content-header-inner">
+                <div class="content-header-title page_title">
+                    Milestones
+                </div>
+            </div>
+        </div>
+        <div class="content-inner goals-clear">
+            <div id="statsContainer">
+                <div class="chart-pie" rel="4" style="height: 100%; overflow: auto">
+                    <div class="table">
+                        <figure class="highcharts-figure">
+                            <div id="container"></div>
+                        </figure>
+                        <div class="column chart-pie-column-percent">
+                            <div class="chart-pie-percent" style="padding-top: 5em">
+                                <div class="chart-pie-percent-title">
+                                    <span th:text="${milestone.getMilePassedPercentage()} + '%'"></span>
+                                </div>
+                                <div class="chart-pie-percent-description">passed</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="padding: 0px 15px 30px">
+            <th:block th:if="${!subMilestones.isEmpty()}">
+                <h1 class="top top-milestnmargin">Milestones</h1>
+                <div style="margin-top: 1.2em;">
+                    <div class="table" th:each="subMile : ${subMilestones}">
+                        <div class="row flex-runs-row hoverSensitive" th:id="${subMile.id}">
+                            <div class="column summary-column summary-column-checkbox-first flex-runs-1-medium summary-column-first summary-column-last select-checkbox-flex-medium">
+                                <input type="checkbox" name="entity_run">
+                            </div>
+                            <div class="column summary-column summary-column-icon-compact flex-runs-1-medium icon-milestone-32 summary-column-first summary-column-last">
+                            </div>
+                            <div class="column summary-column flex-runs-2-medium summary-column-first summary-column-last">
+                                <div class="summary-title summary-title-compact text-ppp">
+                                    <a th:href="@{/milestones/view/{projectId}/{subMilestoneId}(projectId=${projectId},subMilestoneId=${subMile.id})}"
+                                       th:text="${subMile.name}"
+                                       th:value="${subMile.id}">
+                                    </a>
+                                    <span class="hidden hoverAction">
+                                <a th:href="@{/milestones/{projectId}/edit/{subMilestoneId}(projectId=${projectId},subMilestoneId=${subMile.id})}">
+                                    <div class="icon-small-edit icon-small-inline"></div>
+                                </a>
+                            </span>
+                                </div>
+                                <div class="summary-description-compact text-secondary text-ppp">
+                                    <th:block th:if="${subMile.endDate == null}">
+                                        <span>No due date</span>
+                                    </th:block>
+                                    <th:block th:if="${subMile.endDate != null}">
+                                        <span th:text="'Due on ' + ${subMile.getEndDateFormat()} +'.'"></span>
+                                    </th:block>
+                                </div>
+                            </div>
+                            <div class="column summary-column summary-column-bar flex-runs-3-medium summary-column-first summary-column-last">
+                                <div class="table">
+                                    <div class="column">
+                                        <div class="chart-bar ">
+                                            <a target="_blank">
+                                                <div class="chart-bar-custom link-tooltip" tooltip-position="left" style="background: #979797; width: 125px" tooltip-html="100% Untested (3/3 tests) <div id='drilldown-icon'></div>"></div>
+                                            </a>																																																																																				</div>
+                                    </div>
+                                    <div class="column chart-bar-percent ">
+                                        <span th:text="${subMile.getMilePassedPercentage()}+'%'"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column summary-column column-delete-run-medium-first flex-milestones-3-medium summary-column-first summary-column-last">
+                                <a title="Delete this run/plan"
+                                   class="deleteLink"
+                                   th:href="@{/milestones/view/{projectId}/delete/{subMilestoneId}(projectId=${projectId},subMilestoneId=${subMile.id})}">
+                                    <div class="icon-small-delete"></div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </th:block>
+            <h1 class="top top-milestnmargin" id="mile_heading">Test Runs</h1>
+            <div style="margin-top: 1.2em;">
+                <th:block th:if="${testRuns.isEmpty()}">
+                    <span>No active test runs in this milestone.</span>
+                </th:block>
+                <th:block th:if="${!testRuns.isEmpty()}">
+                    <div class="table" th:each="testRun : ${testRuns}">
+                        <div class="row flex-runs-row hoverSensitive" th:id="${testRun.id}">
+                            <div class="column summary-column summary-column-checkbox-first flex-runs-1-medium summary-column-first summary-column-last select-checkbox-flex-medium">
+                                <input type="checkbox" name="entity_run">
+                            </div>
+                            <div class="column summary-column summary-column-icon-compact flex-runs-1-medium icon-run-32 summary-column-first summary-column-last">
+                            </div>
+                            <div class="column summary-column flex-runs-2-medium summary-column-first summary-column-last">
+                                <div class="summary-title summary-title-compact text-ppp">
+                                    <a th:href="@{/runs/detail/{projectId}/{runId}(projectId=${projectId},runId=${testRun.id})}"
+                                       th:text="${testRun.name}"
+                                       th:value="${testRun.id}">
+                                    </a>
+                                    <span class="hidden hoverAction">
+                                    <a th:href="@{/runs/edit/{projectId}/{runId}(projectId=${projectId},runId=${testRun.id})}">
+                                        <div class="icon-small-edit icon-small-inline"></div>
+                                    </a>
+                                </span>
+                                </div>
+                                <div class="summary-description-compact text-secondary text-ppp">
+                                    <span th:text="'By ' + ${testRun.user} +'.'"></span>
+                                </div>
+                            </div>
+                            <div class="column summary-column summary-column-bar flex-runs-3-medium summary-column-first summary-column-last">
+                                <div class="table">
+                                    <div class="column">
+                                        <div class="chart-bar ">
+                                            <a target="_blank">
+                                                <div class="chart-bar-custom link-tooltip" tooltip-position="left" style="background: #979797; width: 125px" tooltip-html="100% Untested (3/3 tests) <div id='drilldown-icon'></div>"></div>
+                                            </a>																																																																																				</div>
+                                    </div>
+                                    <div class="column chart-bar-percent ">
+                                        <span th:text="${testRun.getPassedPercentage()}+'%'"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column summary-column column-delete-run-medium-first flex-milestones-3-medium summary-column-first summary-column-last">
+                                <a title="Delete this run/plan"
+                                   class="deleteLink"
+                                   th:href="@{/runs/delete/{projectId}/{runId}(projectId=${projectId},runId=${testRun.id})}">
+                                    <div class="icon-small-delete"></div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </th:block>
+            </div>
+        </div>
+    </div>
+    <div id="ui-overlay" class="ui-widget-overlay" style="width: 1366px; height: 657px; z-index: 1015; display: none;">
+    </div>
+    <script th:inline="javascript">
+        let passed = [[${statusCounts.getPassedCount}]];
+        let failed = [[${statusCounts.getFailedCount}]];
+        let untested = [[${statusCounts.getUntestedCount}]];
+        let blocked = [[${statusCounts.getBlockedCount}]];
+        let retest = [[${statusCounts.getRetestCount}]];
+    </script>
+    <script type="text/javascript" th:src="@{/js/chart-script.js}">
+    </script>
+</body>
+
+</html>

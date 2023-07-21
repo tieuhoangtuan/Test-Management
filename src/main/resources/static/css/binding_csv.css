@@ -1,0 +1,59 @@
+.left-tab li .item-selected{
+    color: #eaf1f7!important;
+    border-bottom: 3px solid #eaf1f7;
+}
+
+.button-ok {
+    background: #376789
+    url(https://static.testrail.io/7.8.0.1141/images/theme-modern/icons/acceptWhite.svg)
+    3px 50% no-repeat;
+}
+
+.button-positive {
+    background-color: #049474!important;
+    border: 1px solid #049474;
+    color: #fff!important;
+    outline: 0;
+    display: block;
+    padding: 0 8px 0 30px;
+    border-radius: 2px;
+}
+
+.button-left {
+    float: left;
+    margin-right: 10px;
+}
+
+.button {
+    outline: 0;
+    display: block;
+    border-radius: 2px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Barlow',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+    padding: 0 8px 0 30px;
+    cursor: pointer;
+    text-decoration: none!important;
+}
+
+button {
+    appearance: auto;
+    writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: center;
+    align-items: flex-start;
+    cursor: default;
+    box-sizing: border-box;
+}
+
+.button-group {
+    height: 28px;
+    margin-top: 10px;
+}

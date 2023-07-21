@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/project.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/top-header.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/side-bar.css}"/>
+    <title>Project</title>
+</head>
+<body>
+    <div th:insert="~{top-header.html :: top-header}"></div>
+    <div th:insert="~{side-bar.html :: side-bar}"></div>
+    <div class="content">
+        <div class="title">Projects</div>
+        <div style="margin: 10px 15px 0px ;">
+            <div id="user" class="tabcontent" style="display: block; background-color: #f5f9fd;">
+                <table >
+                    <thead>
+                        <tr>
+                            <th>Project</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="listProject: ${projectList}">
+                        <td style="display: block;" class="project-name" th:text="${listProject.name}"></td>
+
+                        <div>
+                            <td class="updelete" style="display: block;">
+                                <a th:href="@{/project/edit/{id}(id=${listProject.id})}">
+                                    <div class="icon-small-edit"></div>
+                                </a>
+                            </td>
+                            <td class="updelete" style="display: block;">
+                                <a th:href="@{/project/{id}(id=${listProject.id})}">
+                                    <div class="icon-small-delete"></div>
+                                </a>
+                            </td>
+                        </div>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="button-group grid-buttons">
+                <a th:href="@{/project/create}" class="button button-left button-add">Add Project</a>
+                <a href="#" class="button button-left button-add btn-left">Add Example Project</a>
+            </div>
+        </div> 
+    </div>   
+</body>
+</html>

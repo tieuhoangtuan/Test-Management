@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/overview.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/top-header.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/side-bar.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/binding_csv.css}"/>
+    <script th:src="@{/js/header-project.js}"></script>
+    <title>Overview</title>
+
+</head>
+<body>
+<th:block th:insert="~{header-project.html :: header-project}">
+</th:block>
+<div th:replace="~{side-bar.html :: side-bar}"></div>
+<form th:action="@{/cases/post-binding-csv/{projectId}/{sectionId} (projectId=${projectId}, sectionId=${sectionId})}"
+      method="post"
+      id="content">
+    <input type="hidden" name="rowsData" th:value="${rowsDataJson}"/>
+    <div style="margin-left: 1rem" id="content-inner" class="content-inner goals-clear">
+        <div id="activityContainer">
+        </div>
+        <div id="content_container">
+            <table th:each="header : ${headers}">
+                <tr style="display: flex;
+                justify-content: space-between;
+                width: 250px">
+                    <td th:text="${header}" th:value="${header}"></td>
+                    <td>
+                        <label>
+                            <select name="fields">
+                                <option value="" selected disabled>-</option>
+                                <option th:each="field : ${fieldNames}"
+                                        th:text="${field}"
+                                        th:value="${field}">
+                                </option>
+                            </select>
+                        </label>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div style="display: flex; justify-content: center;
+        margin-bottom: 1rem">
+            <button class="button button-left button-positive button-ok" type="submit">
+                Next
+            </button>
+        </div>
+    </div>
+</form>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/css/login.css">
+  <link rel="stylesheet" th:href="@{/css/login.css}">
+  <title>2FA - TestRail</title>
+</head>
+<body>
+<div id="form" class="loginpage-form">
+  <div class="logo loginpage-logo">
+    <a href="http://www.gurock.com/testrail/" target="_blank" class="logo-loginpage"></a>
+  </div>
+  <div id="form-inner">
+    <h1 class="loginpage-installationname">Thank you</h1>
+    <div id="content">
+        Hello <span class="username" th:text="${user.username}"></span>, thank you for creating your account!
+      <p>Scan this QR code to add this site to your 2FA Authentication App.</p>
+      <p>You'll need it later to login</p>
+      <br>
+      <p>
+        <img th:src="${twoFaQrUrl}">
+      </p>
+        <div class="display-flex" style=" margin-bottom:10px;">
+          <div style="float:left;">
+          </div>
+          <a th:href="@{/login/}" class="loginpage-forgotpassword" style="margin-bottom:10px; font-size: 1rem">Login</a>
+        </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/css/test_run_detail.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/test_run_detail.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/high_chart.css}">
+    <script th:src="@{/js/header-project.js}"></script>
+    <title>Test Run Detail</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+</head>
+<body>
+<th:block th:insert="~{header-project.html :: header-project}">
+</th:block>
+<div th:replace="~{side-bar-run-detail.html :: side-bar-run-detail
+(testRun=${run})}"></div>
+<div style="min-height: 100vh" id="content" class="column content overflow-content">
+    <div id="content-header" class="content-header content-header-default">
+        <div class="content-header-inner">
+
+
+            <div class="toolbar content-header-toolbar">
+                <a class="toolbar-button content-header-button button-responsive button-edit toolbar-button-last"
+                   th:href="@{/runs/edit/{projectId}/{runId}(projectId=${projectId},runId=${runId})}"
+                   rel="keep-get">
+                    <span class="button-text">Edit</span>
+                </a>
+                <a class="toolbar-button content-header-button button-responsive button-start"
+                   href="javascript:void(0)">
+                    <span class="button-text">Rerun</span>
+                </a>
+            </div>
+
+            <div class="content-header-title page_title">
+                Test Run 5/16/2023 </div>
+        </div>
+    </div>
+
+    <div id="content-inner" class="content-inner goals-clear">
+        <div id="statsContainer">
+            <div class="chart-pie" rel="4" style="height: 100%; overflow: auto">
+                <div class="table">
+                    <figure class="highcharts-figure">
+                        <div id="container"></div>
+                    </figure>
+                    <div class="column chart-pie-column-percent">
+                        <div class="chart-pie-percent" style="padding-top: 5em">
+                            <div class="chart-pie-percent-title">
+                                <span th:text="${statusCounts.getPassedPercentage()}"></span>
+                                <span>%</span>
+                            </div>
+                            <div class="chart-pie-percent-description">passed</div>
+<!--                            <div class="chart-pie-percent-note text-secondary" style="line-height: 130%">-->
+<!--                                6 / 6 untested (100%). </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="content_container" style="padding: 0px 15px 30px">
+        <th:block th:if="${testRunUsersByAssignUser.values().isEmpty()}">
+            <span>There aren't any tests in this test run.</span>
+        </th:block>
+        <div id="groupContainer" style="margin-top: 1.5em; display: block;">
+            <div id="groupContent">
+                <div th:each="groupedUsers : ${testRunUsersByAssignUser}" id="groups">
+                    <div class="group grid-container top" rel="-1" id="group--1">
+                        <div th:if="${groupedUsers.key.id == null}" class="grid-title">
+                                    <span
+                                            class="title pull-left">Unassigned
+                                    </span>
+                            <span class="text-secondary section-count">1</span>
+                            <div class="clear"></div>
+                        </div>
+                        <div th:unless="${groupedUsers.key.id == null}" class="grid-title">
+                                    <span
+                                            class="title pull-left" th:text="${groupedUsers.key.username}">
+                                    </span>
+                            <span class="text-secondary section-count" th:text="${groupedUsers.value.size()}"></span>
+                            <div class="clear"></div>
+                        </div>
+                        <table id="grid--1" class="grid selectable">
+                            <colgroup>
+                                <col class="checkbox">
+                                <col style="width: 65px">
+                                <col style="">
+                                <col style="width: 125px">
+                                <col class="status" style="width: 110px">
+                                <col class="action columns">
+                            </colgroup>
+                            <tbody>
+                            <tr class="header">
+                                <th class="checkbox">
+                                    <input type="checkbox" class="selectionCheckbox">
+                                </th>
+                                <th>
+                                    <a class="link-noline" title="ID">
+                                        <span>ID</span>
+                                    </a>
+                                    <div class="column-actions">
+                                    </div>
+                                </th>
+                                <th>
+                                    <a class="link-noline" title="Title">
+                                        <span>Title</span>
+                                    </a>
+                                    <div class="column-actions">
+                                    </div>
+                                </th>
+                                <th>
+                                    <a class="link-noline" title="Assigned To">
+                                        <span>Assigned To</span>
+                                    </a>
+                                    <div class="column-actions">
+
+                                        <a href="javascript:void(0)" onclick="this.blur(); App.Runs.setTestGrouping('cases:section_id'); return false;"></a>
+                                    </div>
+                                </th>
+                                <th>
+                                    <a class="link-noline" href="javascript:void(0)" onclick="this.blur(); App.Runs.setTestGrouping('tests:status_id'); return false;">
+                                        <span class="hidden-xs" style="display: block;">Status</span>
+                                        <span class="visible-xs hidden" style="display: none;">St.</span>
+                                    </a>
+                                </th>
+
+                            </tr>
+                            <tr th:each="testRunUser : ${groupedUsers.value}"
+                                id="row-13" class="row odd" rel="13">
+                                <td class="checkbox">
+                                    <input type="checkbox"
+                                           class="selectionCheckbox">
+                                </td>
+                                <td class="id">
+                                    <a th:text="${testRunUser.id}"
+                                       class="link-noline" rel="keep-get" ></a>
+                                </td>
+                                <td>
+                                    <a th:href="@{/tests/view/{projectId}/{testRunUserId}(projectId = ${projectId}, testRunUserId = ${testRunUser.id})}"
+                                       th:text="${testRunUser.testCase.title}"
+                                       rel="keep-get" class="link-title">
+                                    </a>
+                                </td>
+                                <td th:if="${testRunUser.assignToUser == null}" class="assigned clickable sub" >
+                                    <div></div>
+                                </td>
+                                <td th:unless="${testRunUser.assignToUser == null}" class="assigned clickable sub" >
+                                    <div th:text="${testRunUser.assignToUser.username}"></div>
+                                </td>
+                                <td th:if="${testRunUser.getStatus().equals('Passed')}" class="js-status" rel="3">
+                                    <a href="#statusDropdown" rel="13" class="dropdownLink status hidden-xs passed"
+                                       style="color: rgb(255, 255, 255); display: inline;">
+                                            <span th:text="${testRunUser.getStatus()}"
+                                                  style="color: #f8fafc">
+                                            </span>
+                                        <span class="caret button-caret"></span>
+                                    </a>
+                                </td>
+                                <td th:if="${testRunUser.getStatus().equals('Failed')}" class="js-status" rel="3">
+                                    <a href="#statusDropdown" rel="13" class="dropdownLink status hidden-xs failed"
+                                       style="color: rgb(255, 255, 255); display: inline;">
+                                            <span th:text="${testRunUser.getStatus()}"
+                                                  style="color: #f8fafc">
+                                            </span>
+                                        <span class="caret button-caret"></span>
+                                    </a>
+                                </td>
+                                <td th:if="${testRunUser.getStatus().equals('Untested')}" class="js-status" rel="3">
+                                    <a href="#statusDropdown" rel="13" class="dropdownLink status hidden-xs untested"
+                                       style="color: rgb(255, 255, 255); display: inline;">
+                                            <span th:text="${testRunUser.getStatus()}"
+                                                  style="color: #f8fafc">
+                                            </span>
+                                        <span class="caret button-caret"></span>
+                                    </a>
+                                </td>
+                                <td th:if="${testRunUser.getStatus().equals('Blocked')}" class="js-status" rel="3">
+                                    <a href="#statusDropdown" rel="13" class="dropdownLink status hidden-xs blocked"
+                                       style="color: rgb(255, 255, 255); display: inline;">
+                                            <span th:text="${testRunUser.getStatus()}"
+                                                  style="color: #f8fafc">
+                                            </span>
+                                        <span class="caret button-caret"></span>
+                                    </a>
+                                </td>
+                                <td th:if="${testRunUser.getStatus().equals('Retest')}" class="js-status" rel="3">
+                                    <a href="#statusDropdown" rel="13" class="dropdownLink status hidden-xs retest"
+                                       style="color: rgb(255, 255, 255); display: inline;">
+                                            <span th:text="${testRunUser.getStatus()}"
+                                                  style="color: #f8fafc">
+                                            </span>
+                                        <span class="caret button-caret"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:inline="javascript">
+    let passed = [[${statusCounts.getPassedCount}]];
+    let failed = [[${statusCounts.getFailedCount}]];
+    let untested = [[${statusCounts.getUntestedCount}]];
+    let blocked = [[${statusCounts.getBlockedCount}]];
+    let retest = [[${statusCounts.getRetestCount}]];
+</script>
+<script type="text/javascript" th:src="@{/js/chart-script.js}">
+</script>
+</body>
+</html>

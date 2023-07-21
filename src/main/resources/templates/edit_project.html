@@ -1,0 +1,62 @@
+    <!DOCTYPE html>
+    <html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/edit_project.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/top-header.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/side-bar.css}"/>
+        <script th:src="@{/js/edit-project.js}"></script>
+        <title>Edit project</title>
+    </head>
+    <body>
+        <div th:insert="~{top-header.html :: top-header}"></div>
+        <div th:insert="~{side-bar.html :: side-bar}"></div>
+        <div class="content">
+            <div class="title">Edit Project</div>
+            <div style="margin-left: 15px">
+                <div class="tab-active">
+                    <button class="tablinks" onclick="openCity(event, 'project')">PROJECT</button>
+                    <button class="tablinks" onclick="openCity(event, 'access')">ACCESS</button>
+                </div>
+                <form th:action="@{/project/edit/{projectId}(projectId=${project.getId()})}" th:method="post">
+                    <div id="project" class="tabcontent" style="display: block;">
+                        <div class="form-group">
+                            <label style="margin-left: 15px;" for="name">Name*</label>
+                            <input th:value="${project.getName()}" th:name="name" class="form-control" style="margin-left: 15px;" type="text" id="name">
+                        </div>
+                    </div>
+
+                    <div id="access" class="tabcontent">
+                        <input type="hidden">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th th:align= "left" >User</th>
+                                    <th>Project Access</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each= "projectUser : ${projectUser}">
+                                    <td><input th:name="emails" th:text="${projectUser.getUser().getEmail()}" th:value="${projectUser.getUser().getEmail()}" type="hidden" ></td>
+                                    <td>
+                                        <Select th:name="roles">
+                                            <option th:each="role : ${role}" th:text="${role.getRole()}" th:if="${role.getRole() == projectUser.getRole().getRole()}" selected></option>
+                                            <option th:each="role : ${role}" th:text="${role.getRole()}" th:if="${role.getRole() != projectUser.getRole().getRole()}"></option>
+                                        </Select >
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="button-container">
+                        <button id="usersSubmit" class="button button-left button-ok button-positive" type="submit">Save Project
+                        </button>
+                        <button class="button button-left button-cancel button-negative">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+    </html>

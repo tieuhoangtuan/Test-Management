@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/side-bar.css}"/>
+    <title>Title</title>
+</head>
+<body>
+  <div class="side-bar" th:fragment="side-bar">
+    <div class="side-bar-menu-item">
+      <div class="sidebar-inner">
+        <p>Manage projects, users and global settings.</p>
+      </div>
+      <ul>
+        <li><a th:href="@{/}">Overview</a></li>
+        <li><a th:href="@{/project}">Projects</a></li>
+        <li><a th:href="@{/users/overview}">Users & Roles</a></li>
+        <li><a href="">Customization</a></li>
+        <li><a href="">Integration</a></li>
+        <li><a href="">Data Management</a></li>
+        <li><a href="">Site Settings</a></li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

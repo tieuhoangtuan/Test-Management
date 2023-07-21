@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/sections.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/overview.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/side_bar.css}"/>
+  <script th:src="@{/js/header-project.js}"></script>
+  <title>Overview</title>
+</head>
+<body>
+<th:block th:insert="~{header-project.html :: header-project}">
+</th:block>
+<div th:replace="~{side_bar.html :: side_bar(project=${project})}"></div>
+<div id="content" class="column content overflow-content">
+  <div id="content-header" class="content-header content-header-default">
+    <div class="content-header-inner">
+      <div class="toolbar content-header-toolbar">
+        <a class="toolbar-button toolbar-button-last content-header-button button-edit"
+           th:href="@{/project/edit/{id} (id=${projectId})}">Edit</a>
+      </div>
+      <div style="margin: 1rem 0 0 1rem" class="content-header-title page_title"
+      th:text="${project.name}">
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-left: 1rem; height: 100vh" id="content-inner" class="content-inner goals-clear">
+
+    <div id="activityContainer">
+    </div>
+    <div id="content_container">
+      <div class="table">
+        <div class="column column-p2 column-pad-right" style="padding-right: 8px">
+          <h1 class="top">
+            <a id="navigation-overview-viewmilestones"
+               th:href="@{/milestones/overview/{id}(id=${projectId})}">
+              Milestones
+            </a>
+          </h1>
+          <th:block th:if="${milestones.isEmpty()}">
+            <p>This project doesn't have any active milestones. You can add a new milestone.</p>
+            <div class="button-group">
+              <a id="navigation-overview-addmilestones"
+                 class="button button-left button-add"
+                 th:href="@{/milestones/add/{id}(id=${project.id})}">
+                Add Milestone </a>
+            </div>
+          </th:block>
+          <th:block th:if="${!milestones.isEmpty()}">
+            <div class="table" style="margin-top: 1.2em;">
+              <div class="row flex-milestones-row" th:each="milestone : ${milestones}">
+                <div class="column summary-column summary-column-icon-compact flex-milestones-1-compact icon-milestone-32 summary-column-first ">
+                </div>
+                <div class="column summary-column  flex-milestones-2-compact summary-column-first ">
+                  <div class="summary-title summary-title-compact text-ppp">
+                    <a th:text="${milestone.name}"
+                       th:href="@{/milestones/view/{projectId}/{milestoneId}(projectId = ${project.id}, milestoneId = ${milestone.id})}">
+                    </a>
+                  </div>
+                  <div class="summary-description-compact text-secondary text-ppp">
+                    <th:block th:if="${milestone.getEndDate() == null}">
+                      <span>No due date</span>
+                    </th:block>
+                    <th:block th:if="${milestone.getEndDate() != null}">
+                      <span th:text="'Due on ' + ${milestone.getEndDateFormat()}"></span>
+                    </th:block>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </th:block>
+        </div>
+        <div class="column column-p2 column-pad-left" style="padding-left: 8px">
+          <h1 class="top">
+            <a id="navigation-overview-runs" class="nolink"
+               th:href="@{/runs/overview/{id}(id=${projectId})}">
+              Test Runs
+            </a>
+          </h1>
+          <th:block th:if="${testRuns.isEmpty()}">
+            <p>This project doesn't have any active test runs. You can add a new test run.</p>
+            <div class="button-group">
+              <a id="navigation-overview-addrunssuite"
+                 class="button button-left button-add"
+                 th:href="@{/runs/add/{id}(id=${projectId})}">
+                Add Test Run
+              </a>
+            </div>
+          </th:block>
+          <th:block th:if="${!testRuns.isEmpty()}">
+            <div class="table" style="margin-top: 1.2em;">
+              <div class="row flex-runs-row" th:each="run : ${testRuns}">
+                <div class="column summary-column summary-column-icon-compact flex-runs-1-compact icon-run-32 summary-column-first summary-column-last">
+                </div>
+                <div class="column summary-column flex-runs-2-compact summary-column-first summary-column-last">
+                  <div class="summary-title summary-title-compact text-ppp">
+                    <a id="navigation-overview-viewruns"
+                       th:text="${run.name}"
+                       th:href="@{/runs/detail/{projectId}/{runId}(projectId = ${projectId}, runId = ${run.id})}">
+                    </a>
+                  </div>
+                  <div class="summary-description-compact text-secondary text-ppp">
+                    <span th:text="'By '+${run.initiator.getFullName()}+'.'"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </th:block>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

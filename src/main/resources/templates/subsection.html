@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<th:div >
+  <div th:fragment="tree(children)" th:each="section : ${children}" style="padding-left: 28px; border-left: 1px solid #aecade; margin-left: 0px;" class="group grid-container">
+    <div class="grid-title" ondragover="allowDrop(event)" th:id="${section.id}" ondrop="dropTestCase(event, this.id)">
+      <input th:id="section-id-+${section.id}" type="hidden">
+      <span th:id="section-name-+${section.id}" th:text="${section.name}" class="title-content"></span>
+      <span class="text-secondary section-count">0</span>
+      <a style="margin-left: 5px" th:id="${section.id}" onclick="editSection(this.id)">
+        <div class="icon-small-edit icon-small-inline"></div>
+      </a>
+      <a th:href="@{/suites/view/{projectId}/delete/{id}(projectId=${projectId}, id=${section.id})}">
+        <div class="icon-small-delete icon-small-inline" style="margin-left: 5px;"></div>
+      </a>
+    </div>
+    <div th:id="section-description-+${section.id}" class="description" th:text="${section.description}">this is parent section</div>
+    <div class="section-table">
+      <table>
+        <thead>
+        <tr class="head-section">
+          <th><div class="icon-dragnoblue"></div></th>
+          <th  class="checkbox-section"><input type="checkbox"></th>
+          <th class="id-section">
+            <a href=""><span>ID</span></a>
+          </th>
+          <th class="title-section">
+            <a href=""><span>Title</span></a>
+          </th>
+        </tr>
+        </thead>
+        <tbody th:unless="${section.getTestCaseList().isEmpty()}">
+        <tr draggable="true" th:each="testcase : ${section.getTestCaseList()}"
+            th:id="${testcase.id}"
+            ondragstart="dragTestCase(event, this.id)">
+          <td>
+            <div class="caseDraggable dragdrop-action"></div>
+          </td>
+          <td class="checkbox-section">
+            <input type="checkbox">
+          </td>
+          <td class="id-section">
+            <a href="#" th:text="${testcase.id}"></a>
+          </td>
+          <td class="title-section">
+            <a href="#" th:text="${testcase.title}"></a>
+          </td>
+          <td>
+            <a th:href="@{/cases/update/{projectId}/{caseId}(projectId = ${projectId}, caseId =${testcase.id})}">
+              <div class="icon-small-edit"></div>
+            </a>
+          </td>
+
+          <td>
+            <a th:href="@{/cases/delete/{projectId}/{caseId}(projectId = ${projectId}, caseId =${testcase.id})}">
+              <div class="icon-small-delete"></div>
+            </a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin: 10px 0px 10px; display: none;" th:id="section+${section.id}">
+      <form th:action="@{/cases/create/{projectId}(projectId=${projectId})}"
+            method="post"
+            th:object="${testCase}"
+            style="display: flex; align-items: center;">
+        <input type="hidden" id="section_id" name="section_id" th:value="${section.id}">
+        <label for="caseTitle" style="margin-right: 5px;">Case Title:</label>
+        <input th:field="*{title}" id="caseTitle" type="text" style="border: 1px solid #aecade;border-radius: 3px; width: 462px; height: 22px;margin-right: 5px;">
+        <button type="submit" class="icon-button-accept" name="submit" value=""></button>
+        <a class="cancel" style="display: block;" th:id="${section.id}" onclick="closeCaseForm(this.id)">
+          <div class="icon-cancel"></div>
+        </a>
+      </form>
+    </div>
+    <div class="text-soft grid-actions" th:id="inlineSectionActions+${section.id}">
+      <a class="link" id="addCase" onclick="displayCaseForm(this.id)" th:id="${section.id}">Add Case</a> |
+      <a class="link" th:id="addSubSection+${section.id}" onclick="displaySubSectionForm(this.id)" th:value="${section.id}">Add Subsection</a>
+    </div>
+    <th:block th:unless="${section.getSubSectionList().isEmpty()}">
+      <div th:replace="~{subsection.html :: tree(children=${section.subSectionList})}"></div>
+    </th:block>
+  </div>
+</th:div>
+</body>
+</html>

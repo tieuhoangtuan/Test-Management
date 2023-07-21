@@ -1,0 +1,276 @@
+.left-tab li .item-selected{
+    color: #eaf1f7!important;
+    border-bottom: 3px solid #eaf1f7;
+}
+
+.goals-clear {
+    padding-bottom: 125px;
+}
+
+.content-inner {
+    padding: 18px 15px 30px 15px;
+}
+
+div {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+}
+
+body {
+    color: #202020;
+}
+
+element.style {
+    width: 450px;
+}
+
+.dialog {
+    display: none;
+    background: white;
+}
+
+.dialog-title {
+    display: none;
+}
+
+span {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+form {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+element.style {
+    display: none;
+    padding-top: 0px;
+}
+
+#form {
+    clear: left;
+}
+
+input {
+    font-family: 'Barlow',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+}
+
+input {
+    writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    text-align: start;
+    -webkit-rtl-ordering: logical;
+    margin: 0;
+    padding: 0;
+}
+
+input[type="hidden" i] {
+    appearance: none;
+    background-color: initial;
+    cursor: default;
+    display: none !important;
+    padding: initial;
+    border: initial;
+}
+
+.form-group>label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+label {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+    cursor: default;
+}
+
+.form-required {
+    color: #444;
+}
+
+input.form-control {
+    height: 22px;
+    line-height: 22px;
+}
+
+.form-control-full {
+    width: calc(100% - 12px)!important;
+}
+
+.form-control {
+    display: block;
+    background: white;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #aecade;
+    font-size: inherit;
+    margin: 0;
+}
+
+.io-framed {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #aecade;
+}
+
+.io-container {
+    padding: 3px;
+    background: #f6fbff;
+    border-radius: 2px;
+}
+
+.table {
+    table-layout: fixed;
+    display: table;
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.column-p4 {
+    width: 25%;
+    padding: 7px;
+    box-sizing: border-box;
+    display: inline-block;
+}
+
+.attachment-list-wrapper {
+    border-radius: 2px;
+    margin-bottom: 15px;
+}
+
+textarea.form-control, div.field-editor.form-control {
+    background: #fff;
+    padding: 5px;
+    color: #202020;
+    font-size: 12px;
+}
+
+.textarea-resizable .field-editor, .field-editor {
+    white-space: pre-wrap!important;
+}
+
+.textarea-resizable .field-editor {
+    height: 100px;
+}
+
+.field-editor {
+    overflow: auto;
+    resize: vertical;
+    font-family: Consolas,Menlo,"Liberation Mono","DejaVu Sans Mono","Bitstream Vera Sans Mono",Courier New,monospace;
+    min-height: 100px;
+}
+
+/*button.button {*/
+/*    height: 28px;*/
+/*    line-height: 20px!important;*/
+/*}*/
+
+.button-ok {
+    background: #376789
+    url(https://static.testrail.io/7.8.0.1141/images/theme-modern/icons/acceptWhite.svg)
+    3px 50% no-repeat;
+}
+
+.button-positive {
+    background-color: #049474!important;
+    border: 1px solid #049474;
+    color: #fff!important;
+    outline: 0;
+    display: block;
+    padding: 0 8px 0 30px;
+    border-radius: 2px;
+}
+
+.button-left {
+    float: left;
+    margin-right: 10px;
+}
+
+.button {
+    outline: 0;
+    display: block;
+    border-radius: 2px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Barlow',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+    padding: 0 8px 0 30px;
+    cursor: pointer;
+    text-decoration: none!important;
+}
+
+button {
+    appearance: auto;
+    writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: center;
+    align-items: flex-start;
+    cursor: default;
+    box-sizing: border-box;
+}
+
+.button-group {
+    height: 28px;
+    margin-top: 10px;
+}
+
+a, a:link {
+    cursor: pointer;
+}
+
+.button-negative {
+    color: #e40046!important;
+    outline: 0;
+    display: block;
+    border: 1px solid #e40046;
+    padding: 0 8px 0 30px;
+    border-radius: 2px;
+    height: 37px;
+    background-color: transparent!important;
+}
+
+.button-cancel {
+    margin-left: 10px;
+}
+
+.button-cancel {
+    background: #376789
+    url(https://static.testrail.io/7.8.0.1141/images/theme-modern/icons/cancel.svg)
+    8px 50% no-repeat;
+}
+
+.separator {
+    height: 1px;
+    width: 100%;
+    background-color: black;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

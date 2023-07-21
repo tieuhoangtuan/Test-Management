@@ -1,0 +1,167 @@
+element.style {
+    width: 250px;
+    margin: 1.5em 0 2em 0;
+}
+
+.sidebar {
+    background: #d2e2ed;
+    height: 100vh;
+    float: right;
+    width: 20%;
+}
+
+.column {
+    display: table-cell;
+    vertical-align: top;
+    margin: 0;
+    padding: 0;
+}
+
+div {
+    margin: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+body {
+    color: #202020;
+}
+
+.sidebar-inner {
+    padding: 15px 15px 15px 5px;
+}
+
+.sidebar-h1 {
+    font-size: 17px;
+    height: 26px;
+    line-height: 26px;
+    padding: 0;
+    margin-bottom: 1em;
+    color: #244358;
+    font-weight: 600;
+}
+
+.top {
+    margin-top: 0!important;
+}
+
+.sidebar-h1::after {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 3px;
+    border-bottom: 3px solid #aecade;
+}
+
+.table {
+    border-radius: 4px;
+    table-layout: fixed;
+    display: table;
+    width: 100%;
+}
+
+.row {
+    background: #fff;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    padding: 4px 0;
+}
+
+.icon-milestone-32 {
+    background: url(https://static.testrail.io/7.8.0.1141/images/theme-modern/app/milestone32.svg) center no-repeat;
+}
+
+.summary-column-icon-compact {
+    width: 45px;
+}
+
+.summary-column-first {
+    border-top: 0;
+    padding-top: 0;
+}
+
+.summary-column {
+    padding-bottom: 0;
+}
+
+.column {
+    display: table-cell;
+    vertical-align: top;
+    margin: 0;
+    padding: 0;
+}
+
+#sidebar .summary-title.summary-title-compact {
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+}
+
+.summary-title-compact {
+    font-size: 14px;
+    padding-bottom: 1px;
+}
+
+.summary-title {
+    padding: 5px 0 1px 0;
+}
+
+.summary-title a, .summary-title-compact a {
+    color: #111;
+    font-weight: 600;
+}
+
+a, a:link {
+    text-decoration: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+a {
+    outline: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+.summary-description-compact {
+    margin-top: 6px;
+    padding-bottom: 4px;
+}
+
+.text-secondary {
+    color: #707070;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.summary-description-compact a, .summary-description-compact .link .text-secondary .link {
+    color: #5993bc;
+}
+
+.link, .link:link {
+    text-decoration: underline;
+}
+
+.icon-run-32 {
+    background: url(https://static.testrail.io/7.8.0.1141/images/theme-modern/app/run32.svg) center no-repeat;
+}
+
+.icon-suite-32 {
+    background: url(https://static.testrail.io/7.8.0.1141/images/theme-modern/app/suite32.svg) center center no-repeat;
+}
+
+.summary-column-last {
+    padding-bottom: 0;
+}
+
+span {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+}

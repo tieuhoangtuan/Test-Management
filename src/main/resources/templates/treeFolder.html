@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    /* Add CSS styling for the tree folder */
+    .folder {
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+<li th:fragment="treeFolder(sectionList)">
+    <ul>
+        <li th:each="section : ${sectionList}">
+            <span th:text="${section.name}"></span>
+            <ul th:if="${section.subSectionList}">
+                <li th:replace="treeFolder :: treeFolder (${section.subSectionList})"></li>
+            </ul>
+        </li>
+    </ul>
+</li>
+</body>
+</html>

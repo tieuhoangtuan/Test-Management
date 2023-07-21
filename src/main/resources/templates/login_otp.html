@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/login.css">
+  <link rel="stylesheet" th:href="@{/css/login.css}">
+</head>
+<body>
+<div id="form" class="loginpage-form">
+  <div class="logo loginpage-logo">
+    <a href="http://www.gurock.com/testrail/" target="_blank" class="logo-loginpage"></a>
+  </div>
+  <div id="form-inner">
+    <h1 class="loginpage-installationname">TestRail QA</h1>
+    <div id="content">
+      <h1 class="loginpage-login-text">Log into Your Account</h1>
+      <br>
+      <p th:if="${verifyError}" class="alert alert-danger" role="alert">Invalid Token
+        <br>
+        <a th:href="@{/forgot_password}" style="margin-bottom:10px; font-size: 1rem">Forgot your password?</a>
+      </p>
+      <form th:action="@{/login/otp}" method="post">
+        <div class="form-group" style="padding-bottom:10px">
+          <div class="login-inputx">
+            <input id="otp" class="login-input input-noempty" type="text" name="otp">
+            <label for="otp" class="login-label">OTP</label>
+          </div>
+        </div>
+<!--        <div class="display-flex" style=" margin-bottom:10px;">-->
+<!--          <div style="float:left;">-->
+<!--          </div>-->
+<!--          <a th:href="@{/login/}" class="loginpage-forgotpassword" style="margin-bottom:10px; font-size: 1rem">Already have an account? Login</a>-->
+<!--        </div>-->
+<!--        <div class="display-flex" style=" margin-bottom:40px;">-->
+<!--          <div style="float:left;">-->
+<!--          </div>-->
+<!--          <a th:href="@{/forgot_password}" class="loginpage-forgotpassword" style="margin-bottom:10px; font-size: 1rem">Forgot your password?</a>-->
+<!--        </div>-->
+        <button type="submit" id="button_primary" class="loginpage-button-sso-disable loginpage-button-sso-disable-hover  loginpage-button-sso-disable-active">
+          <span class="single-sign-on">Verify</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>
